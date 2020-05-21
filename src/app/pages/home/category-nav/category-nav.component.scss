@@ -1,0 +1,33 @@
+@import "../../../../variable.scss";
+
+.category_nav_container {
+  padding: 20px;
+  background-color: #1d614113;
+  .category_ul {
+    list-style: none;
+    li {
+      text-transform: capitalize;
+      cursor: pointer;
+      display: inline;
+      margin-right: 50px;
+    }
+  }
+}
+
+::ng-deep .mat-menu-panel {
+  padding: 20px 0;
+  .mat-menu-content:not(:empty) {
+    ul {
+      li {
+        padding: 13px;
+        text-transform: capitalize;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $header_background_color;
+          color: white;
+        }
+      }
+    }
+  }
+}

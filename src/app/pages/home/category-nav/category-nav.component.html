@@ -1,0 +1,47 @@
+<div class="category_nav_container">
+  <ul class="category_ul" fxLayout="row" fxLayoutAlign="center center">
+    <li [matMenuTriggerFor]="womensMenu" #triggerwomensMenu="matMenuTrigger">
+      women
+      <mat-menu #womensMenu="matMenu">
+        <ul (mouseleave)="triggerwomensMenu.closeMenu()">
+          <li>jeans</li>
+          <li>shirts/Tops</li>
+          <li>Outwear</li>
+          <li>Dresses</li>
+          <li>bags</li>
+          <li>shoes</li>
+        </ul>
+      </mat-menu>
+    </li>
+    <li [matMenuTriggerFor]="mansMenu" #triggermansMenu="matMenuTrigger">
+      men
+      <mat-menu #mansMenu="matMenu">
+        <ul (mouseleave)="triggermansMenu.closeMenu()">
+          <li>jeans</li>
+          <li>shirts/Tops</li>
+          <li>Outwear</li>
+          <li>Shorts</li>
+        </ul>
+      </mat-menu>
+    </li>
+    <li [matMenuTriggerFor]="kidsMenu" #triggerkidsMenu="matMenuTrigger">
+      Kids
+      <mat-menu #kidsMenu="matMenu">
+        <ul (mouseleave)="triggerkidsMenu.closeMenu()">
+          <li>jeans</li>
+          <li>shirts/Tops</li>
+          <li>Outwear</li>
+          <li>Dresses</li>
+          <li>bags</li>
+          <li>shoes</li>
+        </ul>
+      </mat-menu>
+    </li>
+    <li>
+      On sale
+    </li>
+    <li>
+      Shop now
+    </li>
+  </ul>
+</div>

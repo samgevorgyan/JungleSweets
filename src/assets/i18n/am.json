@@ -1,0 +1,13 @@
+{
+  "HEADER": {
+    "LOGIN": "Մուտք գործել"
+  },
+
+  "HOME": {
+    "HELLO": "բարի գալուստ"
+  },
+  "ROUTES": {
+    "home": "home",
+    "user": "user"
+  }
+}

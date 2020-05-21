@@ -1,0 +1,78 @@
+@import "../../../variable";
+
+header {
+  .sidenav-container {
+    height: 100%;
+  }
+
+  .sidenav {
+    width: 200px;
+  }
+
+  ::ng-deep .mat-drawer-transition .mat-drawer-backdrop {
+    position: fixed;
+  }
+
+  mat-toolbar {
+    color: white;
+    background-color: $header_background_color;
+    height: 70px;
+    .logo_part {
+      font-size: 16px;
+      img {
+        margin-left: 5px;
+      }
+    }
+
+    .links_part {
+      font-size: 16px;
+
+      .language_part {
+        cursor: pointer;
+        text-transform: capitalize;
+
+        img {
+          width: 20px;
+          height: 20px;
+          margin-right: 10px;
+        }
+        fa-icon {
+          margin-left: 5px;
+          margin-top: 4px;
+        }
+      }
+
+      .shop_card {
+        padding-top: 5px;
+        cursor: pointer;
+        fa-icon {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .mat-menu-panel {
+  min-width: auto !important;
+  min-height: auto !important;
+
+  .mat-menu-content:not(:empty) {
+    padding: 0 !important;
+
+    .language_list_div {
+      padding: 7px;
+      cursor: pointer;
+
+      img {
+        width: 25px;
+        margin-right: 10px;
+      }
+
+      .lang_text {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "HEADER": {
+    "LOGIN": "Login"
+  },
+  "HOME": {
+    "HELLO": "Hello22"
+  },
+  "ROUTES": {
+    "home": "home",
+    "user": "user"
+  }
+}

@@ -1,0 +1,62 @@
+@import "../../../../variable.scss";
+
+.category_square_container {
+  min-height: 300px;
+  .category_square_women {
+    width: 300px;
+    height: 354px;
+    background-image: url("../../../../assets/img/home/category-square/women_square_bg.jpg");
+    @include for-size(lt-sm) {
+      width: 270px;
+    }
+  }
+
+  .category_square_kids {
+    width: 200px;
+    height: 200px;
+    background-image: url("../../../../assets/img/home/category-square/kids_square_bg.png");
+  }
+  .category_square_men {
+    width: 400px;
+    height: 471px;
+    background-image: url("../../../../assets/img/home/category-square/men_square_bg.jpg");
+    @include for-size(lt-sm) {
+      width: 270px;
+      height: 357px;
+    }
+  }
+
+  .category_square_women,
+  .category_square_men,
+  .category_square_kids {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    @include card_shadow;
+    &:hover {
+      cursor: pointer;
+      @include card_shadow_hover;
+    }
+
+    .title_div {
+      font-size: 20px;
+      text-transform: capitalize;
+      -ms-transform: rotate(-45deg); /* IE 9 */
+      -ms-transform-origin: 25px 80px; /* IE 9 */
+      transform: rotate(-45deg);
+      transform-origin: 25px 80px;
+      padding: 5px;
+      font-size: 20px;
+      background-color: $header_background_color;
+      width: 100px;
+      color: white;
+      text-align: center;
+    }
+  }
+}
+::ng-deep .ng-image-slider {
+  width: 1600px !important;
+  margin: 0 auto;
+  display: block !important;
+  margin-bottom: 100px;
+}
