@@ -1,0 +1,16 @@
+@import '../../../../variable.scss';
+
+.slider_container {
+  width: 1280px;
+  margin: auto;
+  @include for-size(lt-lg) {
+    width: 100%;
+  }
+}
+::ng-deep {
+  .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img,
+  .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video {
+    // height: auto !important;
+    // margin: 0;
+  }
+}
