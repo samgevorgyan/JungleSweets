@@ -8,11 +8,12 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { NgImageSliderModule } from 'ng-image-slider';
 import { SlilderComponent } from './slilder/slilder.component';
+import { AssortmentComponent } from './assortment/assortment.component';
 
 export const routes: Routes = [{ path: '', component: HomeComponent }];
 
 @NgModule({
-  declarations: [HomeComponent, SlilderComponent],
+  declarations: [HomeComponent, SlilderComponent, AssortmentComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

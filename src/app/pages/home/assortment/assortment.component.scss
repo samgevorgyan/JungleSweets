@@ -1,0 +1,73 @@
+@import '../../../../variable.scss';
+
+.assortment_container {
+  width: 1280px;
+  margin: auto;
+  padding: 40px 0;
+  .assortment_parent_div {
+    width: 392px;
+
+    .assortment_img_div {
+      width: 100%;
+      height: 300px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .assortment_name {
+      margin-top: 34px;
+      h4 {
+        font-size: 24px;
+        line-height: 1.25em;
+        letter-spacing: 0.07em;
+        font-family: Montserrat, sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    }
+    .assortment_description {
+      p {
+        font-style: italic;
+        text-align: center;
+      }
+    }
+    .assortment_read_more {
+      position: relative;
+      text-align: center;
+      color: #c19d56;
+      cursor: pointer;
+      width: 180px;
+      margin: 14px auto;
+      span {
+        display: inline-block;
+        letter-spacing: 0.19em;
+        font-family: Montserrat, sans-serif;
+        text-transform: uppercase;
+        font-style: normal;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        transform: translateX(-50%);
+        -webkit-transition: width 0.3s ease;
+        -moz-transition: width 0.3s ease;
+        transition: width 0.3s ease;
+        height: 1px;
+        width: 30px;
+        background-color: currentColor;
+      }
+      &:hover {
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
