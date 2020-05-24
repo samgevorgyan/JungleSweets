@@ -35,12 +35,28 @@ $jungle-sweets-theme: mat-light-theme(
   margin: 0;
   padding: 0;
 }
+@font-face {
+  font-family: Cormorant-italic;
+  src: url('./assets/fonts/Cormorant-Italic.ttf');
+}
+@font-face {
+  font-family: Cormorant-regular;
+  src: url('./assets/fonts/Cormorant-Regular.ttf');
+}
+@font-face {
+  font-family: GreatVibes-Regular;
+  src: url('./assets/fonts/GreatVibes-Regular.ttf');
+}
+@font-face {
+  font-family: ElegantIcons;
+  src: url('./assets/fonts/ElegantIcons.ttf');
+}
 html,
 body {
   height: 100%;
 }
 body {
-  font-family: Cormorant, serif;
+  font-family: Cormorant-regular, serif;
   font-size: 21px;
   font-weight: 400;
   font-style: normal;

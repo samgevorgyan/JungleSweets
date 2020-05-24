@@ -1,9 +1,9 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   FontAwesomeModule,
-  FaIconLibrary
-} from "@fortawesome/angular-fontawesome";
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
 
 import {
   faBars,
@@ -12,12 +12,13 @@ import {
   faSearch,
   faAngleDown,
   faAngleUp,
-  faHeart
-} from "@fortawesome/free-solid-svg-icons";
+  faHeart,
+} from '@fortawesome/free-solid-svg-icons';
 
+import { faViber, faInstagram } from '@fortawesome/free-brands-svg-icons';
 @NgModule({
   declarations: [],
-  exports: [CommonModule, FontAwesomeModule]
+  exports: [CommonModule, FontAwesomeModule],
 })
 export class CustomFontAwesomeModule {
   constructor(library: FaIconLibrary) {
@@ -28,7 +29,9 @@ export class CustomFontAwesomeModule {
       faQuestionCircle,
       faSearch,
       faAngleDown,
-      faAngleUp
+      faAngleUp,
+      faViber,
+      faInstagram
     );
   }
 }

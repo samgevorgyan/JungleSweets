@@ -9,11 +9,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { SlilderComponent } from './slilder/slilder.component';
 import { AssortmentComponent } from './assortment/assortment.component';
+import { OrderCakeComponent } from './order-cake/order-cake.component';
 
 export const routes: Routes = [{ path: '', component: HomeComponent }];
 
 @NgModule({
-  declarations: [HomeComponent, SlilderComponent, AssortmentComponent],
+  declarations: [HomeComponent, SlilderComponent, AssortmentComponent, OrderCakeComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
