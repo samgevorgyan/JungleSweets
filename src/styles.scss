@@ -56,7 +56,7 @@ body {
   height: 100%;
 }
 body {
-  font-family: Cormorant-regular, serif;
+  font-family: Cormorant-italic;
   font-size: 21px;
   font-weight: 400;
   font-style: normal;
@@ -67,5 +67,15 @@ body {
 }
 
 .selected_language {
-  background-color: $header_background_color;
+  border: 1px solid $main_gold_color;
+}
+
+.mat-toolbar,
+.mat-toolbar h1,
+.mat-toolbar h2,
+.mat-toolbar h3,
+.mat-toolbar h4,
+.mat-toolbar h5,
+.mat-toolbar h6 {
+  font-family: Cormorant-italic;
 }

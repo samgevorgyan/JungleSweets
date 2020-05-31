@@ -1,9 +1,7 @@
 @import '../../../variable';
 
 header {
-  height: 200px;
   .sidenav-container {
-    height: 100%;
   }
 
   .sidenav {
@@ -15,45 +13,27 @@ header {
   }
 
   mat-toolbar {
-    color: white;
-    background-color: white;
+    padding: 5px;
     height: 100%;
+    background-color: white;
     .logo_part {
       font-size: 16px;
-      img {
-        margin-left: 5px;
-        @include for-size(lt-sm) {
-          width: 300px;
-        }
-        @include for-size(xs) {
-          width: 200px;
-        }
+      fa-icon {
+        color: $main_gold_color;
       }
     }
 
     .links_part {
-      font-size: 16px;
-
+      font-size: 21px;
+      color: $main_gold_color;
       .language_part {
         cursor: pointer;
         text-transform: capitalize;
 
-        img {
-          width: 20px;
-          height: 20px;
-          margin-right: 10px;
-        }
         fa-icon {
           margin-left: 5px;
           margin-top: 4px;
-        }
-      }
-
-      .shop_card {
-        padding-top: 5px;
-        cursor: pointer;
-        fa-icon {
-          font-size: 1.2rem;
+          font-size: 16px;
         }
       }
     }
@@ -63,7 +43,7 @@ header {
 ::ng-deep .mat-menu-panel {
   min-width: auto !important;
   min-height: auto !important;
-
+  color: $main_gold_color;
   .mat-menu-content:not(:empty) {
     padding: 0 !important;
 
@@ -77,8 +57,7 @@ header {
       }
 
       .lang_text {
-        font-size: 1.2rem;
-        text-transform: uppercase;
+        text-transform: capitalize;
       }
     }
   }

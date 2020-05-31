@@ -1,18 +1,25 @@
+import { environment } from './../environments/environment';
 import { ShareModule } from './modules/share/share.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { FooterComponent } from './pages/footer/footer.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpMainInterceptor } from './shared/services/http-interceptor';
 import { SideNavMenuComponent } from './pages/header/side-nav-menu/side-nav-menu.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // translate modules
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -29,6 +36,8 @@ export function createTranslateLoader(http: HttpClient) {
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
 
     TranslateModule.forRoot({
       loader: {
@@ -39,7 +48,9 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     ShareModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpMainInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

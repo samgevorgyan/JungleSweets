@@ -29,22 +29,22 @@
           ></fa-icon> -->
 
           <div class="logo_div" fxLayout="column" fxLayoutAlign="center center">
-            <img src=" assets/img/logo/main_logo.svg" />
+            <img src="assets/img/logo/leaf_logo.svg" />
           </div>
         </div>
 
-        <!-- <div
+        <div
           class="links_part"
           fxLayout="row"
           fxLayoutAlign="end center"
           fxFlex="50"
           fxLayoutGap="20px"
-          *ngIf="!(isHandset$ | async)"
         >
-          <span class="login_part" (click)="openLoginModal()">
-            {{ "HEADER.LOGIN" | translate }}</span
-          >
+          <!-- <span class="login_part" (click)="openLoginModal()">
+            {{ 'HEADER.LOGIN' | translate }}</span
+          > -->
 
+         
           <div
             class="language_part"
             [matMenuTriggerFor]="LanguageMenu"
@@ -53,12 +53,6 @@
             fxLayout="row"
             fxLayoutAlign="space-between center"
           >
-            <img
-              [src]="'assets/img/flags/' + (languageFromUrl$ | async) + '.png'"
-              alt="flag"
-              title="Image Title"
-            />
-
             {{ languageFromUrl$ | async }}
 
             <fa-icon icon="angle-down" *ngIf="!isMenuOpend"></fa-icon>
@@ -76,28 +70,12 @@
                   fxLayout="row"
                   fxLayoutAlign="start center "
                 >
-                  <img
-                    [src]="'assets/img/flags/' + lang.flag + '.png'"
-                    alt="flag"
-                    [title]="lang.name"
-                  />
-                  <span class=" lang_text">{{ lang.name }}</span>
+                  <span class="lang_text">{{ lang.name }}</span>
                 </span>
               </div>
             </mat-menu>
           </div>
-
-          <div class="shop_card">
-            <fa-icon icon="heart"></fa-icon>
-          </div>
-          <div class="shop_card" matBadge="8" matBadgePosition="after">
-            <fa-icon icon="shopping-bag"></fa-icon>
-          </div>
-
-          <div class="shop_card">
-            <fa-icon icon="question-circle"></fa-icon>
-          </div>
-        </div> -->
+        </div>
       </mat-toolbar>
     </mat-sidenav-content>
   </mat-sidenav-container>

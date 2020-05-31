@@ -1,5 +1,6 @@
 // $header_background_color: #4e645e;
 $header_background_color: #1d6141;
+$main_gold_color: #c19d56;
 //size
 $default_height: 45px;
 $default_radius: 38px;
@@ -204,7 +205,7 @@ $default_radius: 38px;
     50% {
       -ms-transform: translateY(100%);
       opacity: 0;
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+      -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
       filter: alpha(opacity=0);
     }
 
@@ -221,7 +222,7 @@ $default_radius: 38px;
     50% {
       -o-transform: translateY(100%);
       opacity: 0;
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+      -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
       filter: alpha(opacity=0);
     }
 

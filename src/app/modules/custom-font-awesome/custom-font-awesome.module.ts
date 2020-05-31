@@ -15,7 +15,11 @@ import {
   faHeart,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { faViber, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import {
+  faViber,
+  faInstagram,
+  faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons';
 @NgModule({
   declarations: [],
   exports: [CommonModule, FontAwesomeModule],
@@ -31,7 +35,8 @@ export class CustomFontAwesomeModule {
       faAngleDown,
       faAngleUp,
       faViber,
-      faInstagram
+      faInstagram,
+      faWhatsapp
     );
   }
 }

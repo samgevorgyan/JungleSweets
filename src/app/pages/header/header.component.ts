@@ -1,17 +1,17 @@
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Component, OnInit } from "@angular/core";
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, OnInit } from '@angular/core';
 
-import { Observable } from "rxjs";
-import { map, shareReplay, tap } from "rxjs/operators";
-import { languageList } from "src/app/utils/language.list";
-import { TranslateService } from "@ngx-translate/core";
-import { LanguageService } from "src/app/shared/services/language.service";
-import { LocalizeRouterService } from "@gilsdav/ngx-translate-router";
+import { Observable } from 'rxjs';
+import { map, shareReplay, tap } from 'rxjs/operators';
+import { languageList } from 'src/app/utils/language.list';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/shared/services/language.service';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 
 @Component({
-  selector: "main-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"]
+  selector: 'main-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   languageList = languageList;
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     .observe(Breakpoints.XSmall)
     .pipe(
       tap(console.log),
-      map(result => result.matches),
+      map((result) => result.matches),
       shareReplay()
     );
 
@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.languageFromUrl$.subscribe((lang: string) => {
       this.setSelectedLanguage(lang);
-      console.log("subscribe headeric");
+      console.log('subscribe headeric');
     });
   }
 
@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
   }
 
   setSelectedLanguage(lang: string) {
-    this.languageList.forEach(key => {
+    this.languageList.forEach((key) => {
       if (key.name === lang) {
         key.selected = true;
       } else {
