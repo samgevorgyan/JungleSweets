@@ -13,6 +13,7 @@ import {
   faAngleDown,
   faAngleUp,
   faHeart,
+  faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -36,7 +37,8 @@ export class CustomFontAwesomeModule {
       faAngleUp,
       faViber,
       faInstagram,
-      faWhatsapp
+      faWhatsapp,
+      faTimesCircle
     );
   }
 }

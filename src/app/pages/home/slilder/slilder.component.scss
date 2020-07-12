@@ -1,20 +1,9 @@
 @import '../../../../variable.scss';
 
 .slider_container {
-  width: 1280px;
-  margin: auto;
-  margin-top: 40px;
   position: relative;
-  @include for-size(md) {
-    width: 900px;
-  }
-  @include for-size(sm) {
-    width: 600px;
-  }
-  @include for-size(lt-sm) {
-    width: 90%;
-    margin-top: 40px;
-  }
+  padding: 40px;
+
   .slider_cover_texts {
     position: absolute;
     width: 100%;
@@ -35,7 +24,7 @@
     }
   }
 }
-::ng-deep {
+:host ::ng-deep {
   .ng-image-slider,
   .ng-image-slider .ng-image-slider-container .main {
     height: 600px !important;
@@ -43,11 +32,11 @@
     @include for-size(md) {
       height: 500px !important;
     }
-    @include for-size(sm) {
-      height: 400px !important;
-    }
     @include for-size(lt-sm) {
-      height: 300px !important;
+      height: 350px !important;
+    }
+    @include for-size(xs) {
+      height: 270px !important;
     }
   }
 }

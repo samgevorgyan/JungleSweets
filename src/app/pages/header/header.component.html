@@ -12,39 +12,17 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-toolbar fxLayout="row" fxLayoutAlign="center center">
-        <div
-          class="logo_part"
-          fxLayout="row"
-          fxLayoutAlign="space-between center"
-          fxLayoutGap="20px"
-        >
-          <!-- <fa-icon
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="drawer.toggle()"
-            *ngIf="isHandset$ | async"
-            icon="bars"
-          ></fa-icon> -->
-
-          <div class="logo_div" fxLayout="column" fxLayoutAlign="center center">
-            <img src="assets/img/logo/leaf_logo.svg" />
-          </div>
+      <mat-toolbar>
+        
+        <div class="logo_part">
+          <img src="../../../assets/img/logo/leaf_logo.svg" />
         </div>
 
-        <div
-          class="links_part"
-          fxLayout="row"
-          fxLayoutAlign="end center"
-          fxFlex="50"
-          fxLayoutGap="20px"
-        >
+        <div class="links_part">
           <!-- <span class="login_part" (click)="openLoginModal()">
             {{ 'HEADER.LOGIN' | translate }}</span
           > -->
 
-         
           <div
             class="language_part"
             [matMenuTriggerFor]="LanguageMenu"

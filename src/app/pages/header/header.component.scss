@@ -2,6 +2,21 @@
 
 header {
   .sidenav-container {
+    width: 1280px;
+    margin: auto;
+
+    @include for-size(lgm) {
+      width: 1200px;
+    }
+    @include for-size(md) {
+      width: 900px;
+    }
+    @include for-size(sm) {
+      width: 600px;
+    }
+    @include for-size(lt-sm) {
+      width: 100%;
+    }
   }
 
   .sidenav {
@@ -13,19 +28,20 @@ header {
   }
 
   mat-toolbar {
-    padding: 5px;
     height: 100%;
     background-color: white;
+    padding: 20px 0;
+    position: relative;
+
     .logo_part {
-      font-size: 16px;
-      fa-icon {
-        color: $main_gold_color;
-      }
+      margin: auto;
     }
 
     .links_part {
       font-size: 21px;
       color: $main_gold_color;
+      position: absolute;
+      right: 40px;
       .language_part {
         cursor: pointer;
         text-transform: capitalize;

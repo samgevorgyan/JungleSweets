@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "jungle-sweets"
+  },
+  "targets": {
+    "jungle-sweets": {
+      "hosting": {
+        "jungle-sweets": [
+          "jungle-sweets"
+        ]
+      }
+    }
   }
 }

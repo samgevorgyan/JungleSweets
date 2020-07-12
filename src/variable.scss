@@ -15,6 +15,8 @@ $default_radius: 38px;
   $s960: 960px;
   $s1279: 1279px;
   $s1280: 1280px;
+  $s1400: 1400px;
+  $s1399: 1399px;
   $s1919: 1919px;
   $s1920: 1920px;
   $a5000: 5000px;
@@ -31,8 +33,12 @@ $default_radius: 38px;
     @media (min-width: $s960) and (max-width: $s1279) {
       @content;
     }
+  } @else if $range == lgm {
+    @media (min-width: $s1280) and (max-width: $s1399) {
+      @content;
+    }
   } @else if $range == lg {
-    @media (min-width: $s1280) and (max-width: $s1919) {
+    @media (min-width: $s1400) and (max-width: $s1919) {
       @content;
     }
   } @else if $range == xl {

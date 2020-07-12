@@ -6,6 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [],
@@ -17,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatMenuModule,
     MatBadgeModule,
     MatButtonModule,
+    MatInputModule,
   ],
 })
 export class CustomMaterialModule {}
