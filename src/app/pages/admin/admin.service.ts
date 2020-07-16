@@ -39,8 +39,8 @@ export class AdminService {
       .subscribe();
   }
 
-  setToDataBase(data: any, path: string) {
-    this.afs.collection<any>(path).add({ data });
+  setToDataBase(data: any, path: string, key: string = 'url') {
+    this.afs.collection<any>(path).add({ [key]: data });
   }
 
   setToDataBaseDocument(data: any, path: string) {

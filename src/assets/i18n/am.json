@@ -1,13 +1,26 @@
 {
   "HEADER": {
-    "LOGIN": "Մուտք գործել"
+    "LANGUAGESHOW": "Հայ"
   },
 
   "HOME": {
-    "HELLO": "բարի գալուստ"
+    "ASSORTMENTS": {
+      "CURRENCY": "դրամ"
+    },
+    "ORDERBLOCK": {
+      "FORINFORMATION": "Պատվիրելու կամ տեղեկատվություն ստանալու համար, սեղմեք ներքևի հղումներին",
+      "CONTACTVIA": "Կապվել"
+    },
+    "ABOUTME": {
+      "STORY": "Մեր մասին"
+    }
   },
-  "ROUTES": {
-    "home": "home",
-    "user": "user"
+  "FOOTER": {
+    "CONTACT": "Կապ",
+    "EMAIL": " Էլ․ հասցե:"
+  },
+  "COMMON":{
+    "READMORE": "Կարդալ ավելին",
+    "READLESS": "Փակել"
   }
 }

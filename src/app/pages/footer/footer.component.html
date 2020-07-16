@@ -5,10 +5,8 @@
     fxLayoutAlign="space-evenly center"
   >
     <div class="contact" fxLayout="column">
-      <h5>CONTACT</h5>
-      <span>Yerevan, Masiv, Moldovakan</span>
-      <span>Email: junglesweets@gmail.com</span>
-      <span>Phone: +374 0931123456</span>
+      <h5>{{ 'FOOTER.CONTACT' | translate }}</h5>
+      <span>{{ 'FOOTER.EMAIL' | translate }} junglesweets@gmail.com</span>
     </div>
     <div
       class="logo_part"
@@ -25,6 +23,22 @@
         fxFlexAlign="center center"
         fxLayoutGap="30px"
       >
+        <a
+          *ngIf="isMobile"
+          target="_blank"
+          href="https://api.whatsapp.com/send?phone=37493769877"
+        >
+          <fa-icon [icon]="['fab', 'whatsapp']"></fa-icon>
+        </a>
+
+        <a
+          *ngIf="isMobile"
+          target="_blank"
+          href="viber://chat?number=37493769877"
+        >
+          <fa-icon [icon]="['fab', 'viber']"></fa-icon>
+        </a>
+
         <a target="_blank" href="https://www.facebook.com/coolrecipesandpics">
           <span class="social_facebook"></span>
         </a>

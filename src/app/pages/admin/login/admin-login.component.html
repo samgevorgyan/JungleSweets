@@ -1,0 +1,16 @@
+<div class="admin_login_container">
+  <form [formGroup]="adminLoginForm" (ngsubmit)="logIn()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [formControlName]="emailForm" placeholder="enter Email" />
+      <mat-error
+        *ngIf="emailForm.hasError('email') && !emailForm.hasError('required')"
+      >
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailForm.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>

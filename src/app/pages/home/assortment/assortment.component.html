@@ -9,33 +9,11 @@
     class="assortment_parent_div"
     fxLayout="column"
     fxLayoutAlign="center center"
-  >
-    <div class="assortment_name">
-      <h4>
-        CREAM CAKES
-      </h4>
-    </div>
-
-    <div class="assortment_description">
-      <p>
-        Lorem ipsum dolor sit amet, in illud possit consequuntur pri. Pro vidit
-        iriure
-      </p>
-    </div>
-
-    <div class="assortment_read_more">
-      <span>Read more</span>
-    </div>
-  </div>
-
-  <div
-    class="assortment_parent_div"
-    fxLayout="column"
-    fxLayoutAlign="center center"
+    *ngFor="let item of assormentsArray"
   >
     <div class="assortment_img_div">
       <ng-image-slider
-        [images]="imageObject"
+        [images]="item.imageObject"
         [infinite]="false"
         [imageSize]="{ width: '100%', space: 0 }"
       ></ng-image-slider>
@@ -43,19 +21,30 @@
 
     <div class="assortment_name">
       <h4>
-        CREAM CAKES
+        {{ (currentLanguage$ | async) === 'am' ? item.amTitle : item.enTitle }}
       </h4>
     </div>
 
     <div class="assortment_description">
-      <p>
-        Lorem ipsum dolor sit amet, in illud possit consequuntur pri. Pro vidit
-        iriure
+      <p [ngClass]="{ readmore: item.selected }">
+        {{
+          (currentLanguage$ | async) === 'am'
+            ? item.amDescription
+            : item.enDescription
+        }}
       </p>
     </div>
-
-    <div class="assortment_read_more">
-      <span>Read more</span>
+    <button (click)="item.selected = !item.selected">
+      {{
+        item.selected
+          ? ('COMMON.READLESS' | translate)
+          : ('COMMON.READMORE' | translate)
+      }}
+    </button>
+    <div class="assortment_price">
+      <span
+        >{{ item.price }} {{ 'HOME.ASSORTMENTS.CURRENCY' | translate }}</span
+      >
     </div>
   </div>
 </div>

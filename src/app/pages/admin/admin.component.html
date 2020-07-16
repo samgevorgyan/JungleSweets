@@ -24,6 +24,52 @@
     </div>
   </div>
 
+  <!--  About me  add edit part-->
+
+  <div class="about_me_cont">
+    <h1>About me</h1>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-form-field class="am_desc" fxFlex="40" fxFlex.xs="100">
+        <mat-label>About me in Armenian</mat-label>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          [(ngModel)]="amAboutme"
+          rows="5"
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field class="am_desc" fxFlex="40" fxFlex.xs="100">
+        <mat-label>About me in English</mat-label>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          [(ngModel)]="enAboutme"
+          rows="5"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <label for="aboutMeImg">
+      click on sheep to chose new img
+      <img src="../../../assets/img/admin/chose-file.gif" alt="" />
+    </label>
+    <input
+      type="file"
+      id="aboutMeImg"
+      (change)="uploadFile($event, 'aboutme-img', true)"
+    />
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+      <div class="slider_images" *ngFor="let item of aboutmeImageUrl$ | async">
+        <img [src]="item.url" alt="slide_img" />
+        <fa-icon
+          icon="times-circle"
+          (click)="deleteFromSlider(item.id, 'aboutme-img', item.url)"
+        ></fa-icon>
+      </div>
+    </div>
+    <button mat-raised-button color="accent" (click) = "saveAboutme()">Save about me</button>
+  </div>
+
   <!--  Assortment add edit part-->
 
   <div class="add_new_assortment_cont" #formDiv>
@@ -70,7 +116,7 @@
         fxLayoutGap="20px"
       >
         <mat-form-field class="am_desc">
-          <mat-label>Desctipion in Armenian</mat-label>
+          <mat-label>Description in Armenian</mat-label>
           <textarea
             matInput
             cdkTextareaAutosize
@@ -79,7 +125,7 @@
           ></textarea>
         </mat-form-field>
         <mat-form-field class="en_desc">
-          <mat-label>Desctipion in English</mat-label>
+          <mat-label>Description in English</mat-label>
           <textarea
             matInput
             cdkTextareaAutosize

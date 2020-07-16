@@ -6,11 +6,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ShareModule } from 'src/app/modules/share/share.module';
 import { OrderModule } from 'ngx-order-pipe';
 import { FormsModule } from '@angular/forms';
+import { AdminLoginComponent } from './login/admin-login.component';
 
-export const routes: Routes = [{ path: '', component: AdminComponent }];
+export const routes: Routes = [{ path: '', component: AdminLoginComponent }];
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [AdminComponent, AdminLoginComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

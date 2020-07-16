@@ -13,7 +13,6 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar>
-        
         <div class="logo_part">
           <img src="../../../assets/img/logo/leaf_logo.svg" />
         </div>
@@ -31,7 +30,7 @@
             fxLayout="row"
             fxLayoutAlign="space-between center"
           >
-            {{ languageFromUrl$ | async }}
+            {{ 'HEADER.LANGUAGESHOW' | translate }}
 
             <fa-icon icon="angle-down" *ngIf="!isMenuOpend"></fa-icon>
             <fa-icon icon="angle-up" *ngIf="isMenuOpend"></fa-icon>
@@ -48,7 +47,7 @@
                   fxLayout="row"
                   fxLayoutAlign="start center "
                 >
-                  <span class="lang_text">{{ lang.name }}</span>
+                  <span class="lang_text">{{ lang.showName }}</span>
                 </span>
               </div>
             </mat-menu>
