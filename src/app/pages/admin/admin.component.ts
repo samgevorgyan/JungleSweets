@@ -4,6 +4,7 @@ import { finalize } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 import { strict } from 'assert';
 import { AssortmentsInterface } from 'src/app/models/assortments.interface';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'jungle-admin',
@@ -30,7 +31,10 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   assortmentUploadInput: any;
 
-  constructor(public adminService: AdminService) {}
+  constructor(
+    public adminService: AdminService,
+    public afAuth: AngularFireAuth
+  ) {}
 
   ngOnInit(): void {
     this.getSliderImages('slider-img');

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AdminLoginGuard } from './pages/admin/guards/login.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -12,5 +13,5 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./pages/admin/admin.module').then((mod) => mod.AdminModule),
   },
-  { path: '**', redirectTo: '/', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];

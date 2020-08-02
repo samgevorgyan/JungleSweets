@@ -9,6 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AdminService {
   tempUrls: Array<{ main: boolean; url: string }> = [];
+  isLogedin = false;
   constructor(
     private storage: AngularFireStorage,
     private afs: AngularFirestore

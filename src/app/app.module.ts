@@ -30,16 +30,14 @@ export function createTranslateLoader(http: HttpClient) {
     HeaderComponent,
     FooterComponent,
     SideNavMenuComponent,
-
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
+
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
-
 
     TranslateModule.forRoot({
       loader: {
@@ -49,6 +47,7 @@ export function createTranslateLoader(http: HttpClient) {
       },
     }),
     ShareModule,
+    AppRoutingModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpMainInterceptor, multi: true },

@@ -15,7 +15,13 @@ import { AboutmeComponent } from './aboutme/aboutme.component';
 export const routes: Routes = [{ path: '', component: HomeComponent }];
 
 @NgModule({
-  declarations: [HomeComponent, SlilderComponent, AssortmentComponent, OrderCakeComponent, AboutmeComponent],
+  declarations: [
+    HomeComponent,
+    SlilderComponent,
+    AssortmentComponent,
+    OrderCakeComponent,
+    AboutmeComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
