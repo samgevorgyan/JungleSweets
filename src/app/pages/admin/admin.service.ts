@@ -3,6 +3,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AssortmentsInterface } from '../../models/assortments.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -41,11 +42,11 @@ export class AdminService {
   }
 
   setToDataBase(data: any, path: string, key: string = 'url') {
-    this.afs.collection<any>(path).add({ [key]: data });
+    this.afs.collection<any>(path).add({ [key]: data.data });
   }
 
   setToDataBaseDocument(data: any, path: string) {
-    this.afs.doc<any>(path).update({ data });
+    this.afs.doc<any>(path).update({ data: data.data });
   }
 
   getCollectionFromDb(path: string) {

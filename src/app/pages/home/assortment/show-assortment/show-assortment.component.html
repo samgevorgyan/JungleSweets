@@ -1,0 +1,48 @@
+<div *ngIf="showContent"
+  class="assortment_parent_div"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="40px"
+
+
+
+>
+  <div   class="assortment_info" fxLayout="column"
+       fxLayoutAlign="center start"
+       fxLayoutGap="40px">
+    <h2 > {{ (currentLanguage$ | async) === 'am' ? assortmentArray.data.title.am : assortmentArray.data.title.en }}</h2>
+    <p> {{
+      (currentLanguage$ | async) === 'am'
+        ? assortmentArray.data.description.am
+        : assortmentArray.data.description.en
+      }}</p>
+  </div>
+
+
+  <div class="assortment_slider_div">
+    <ng-image-slider
+      [images]="assortmentSliderArray"
+      [infinite]="false"
+      [imageSize]="{ width: '100%', space: 0 }"
+      #carousel
+    ></ng-image-slider>
+  </div>
+
+  <div
+    class="assortment_parent"
+    fxLayout="row wrap"
+    fxLayoutAlign="space-around center"
+
+    fxLayoutGap.lt-sm="0px"
+
+
+  >
+    <div
+      class="img_cont"
+      *ngFor="let imgUrl of assortmentArray.data.urls; index as i"
+      (click)="imagesCarousel(i)"
+    >
+      <img [src]="imgUrl.url" [alt]="imgUrl.url">
+    </div>
+  </div>
+</div>

@@ -9,36 +9,17 @@
     class="assortment_parent_div"
     fxLayout="column"
     fxLayoutAlign="center center"
-    *ngFor="let item of assormentsArray"
+    *ngFor="let item of assortmentsArray"
   >
-    <div class="assortment_img_div">
-      <ng-image-slider
-        [images]="item.imageObject"
-        [infinite]="false"
-        [imageSize]="{ width: '100%', space: 0 }"
-      ></ng-image-slider>
+    <div class="assortment_img_div" [routerLink]="['../assortment', item.id]">
+      <img [src]="item.imageToShow" [alt]="item.imageToShow">>
     </div>
 
-    <div class="assortment_name">
-      <h4>
-        {{ (currentLanguage$ | async) === 'am' ? item.amTitle : item.enTitle }}
-      </h4>
-    </div>
 
-    <div class="assortment_description">
-      <p [ngClass]="{ readmore: item.selected }">
-        {{
-          (currentLanguage$ | async) === 'am'
-            ? item.amDescription
-            : item.enDescription
-        }}
-      </p>
-    </div>
-    <button (click)="item.selected = !item.selected">
+    <button [routerLink]="['../assortment', item.id]">
       {{
-        item.selected
-          ? ('COMMON.READLESS' | translate)
-          : ('COMMON.READMORE' | translate)
+
+         'COMMON.SEEMORE' | translate
       }}
     </button>
     <div class="assortment_price">

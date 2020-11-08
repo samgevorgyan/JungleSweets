@@ -1,8 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AdminService } from './admin.service';
-import { finalize } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
-import { strict } from 'assert';
 import { AssortmentsInterface } from 'src/app/models/assortments.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 
@@ -19,13 +17,13 @@ export class AdminComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
   addNewAssortment: AssortmentsInterface;
   newAssortmentsImagesArray: Array<any>;
-  amTitile: string = '';
-  enTitile: string = '';
-  enDescription: string = '';
-  amDescription: string = '';
-  amAboutme: string = '';
-  enAboutme: string = '';
-  price: string = '';
+  amTitile = '';
+  enTitile = '';
+  enDescription = '';
+  amDescription = '';
+  amAboutme = '';
+  enAboutme = '';
+  price = '';
   idForUpdate: string | null = null;
   idForAboutMeUpdate: string | null = null;
 
@@ -46,9 +44,11 @@ export class AdminComponent implements OnInit, OnDestroy {
   getSliderImages(path: string) {
     this.sliderImageUrls$ = this.adminService.getCollectionFromDb(path);
   }
+
   getAboutMeImages(path: string) {
     this.aboutmeImageUrl$ = this.adminService.getCollectionFromDb(path);
   }
+
   getAboutMeTexts(path: string) {
     this.adminService.getCollectionFromDb(path).subscribe((res) => {
       console.log('res', res);
@@ -60,6 +60,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       console.log('idForAboutMeUpdate', this.idForAboutMeUpdate);
     });
   }
+
   getAssortments(path: string) {
     this.assortments$ = this.adminService.getCollectionFromDb(path);
   }
@@ -96,6 +97,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       this.adminService.setToDataBase(data, 'about-me', 'data');
     }
   }
+
   addNewAssortmentFunc() {
     if (
       this.amTitile === '' ||
@@ -107,16 +109,18 @@ export class AdminComponent implements OnInit, OnDestroy {
       return false;
     }
     this.addNewAssortment = {
-      title: {
-        am: this.amTitile ? this.amTitile : '',
-        en: this.enTitile ? this.enTitile : '',
+      data: {
+        title: {
+          am: this.amTitile ? this.amTitile : '',
+          en: this.enTitile ? this.enTitile : '',
+        },
+        description: {
+          am: this.amDescription,
+          en: this.enDescription,
+        },
+        price: this.price,
+        urls: this.adminService.tempUrls,
       },
-      description: {
-        am: this.amDescription,
-        en: this.enDescription,
-      },
-      price: this.price,
-      urls: this.adminService.tempUrls,
     };
     if (this.idForUpdate === null) {
       this.adminService.setToDataBase(
@@ -133,6 +137,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     this.resetForm();
   }
+
   resetForm() {
     this.amTitile = '';
     this.enTitile = '';
@@ -143,6 +148,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.idForUpdate = null;
     this.assortmentUploadInput = '';
   }
+
   makeMainImage(i: number) {
     this.adminService.tempUrls.forEach((item) => {
       item.main = false;
@@ -160,6 +166,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.idForUpdate = item.id;
     el.scrollIntoView();
   }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

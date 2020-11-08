@@ -1,0 +1,60 @@
+@import "../../../../../variable";
+.assortment_parent_div {
+  background-color: white;
+  margin: auto;
+padding: 40px;
+  width: 1280px;
+  min-height: calc(100vh - 80px);
+  @include for-size(lgm) {
+    width: 1200px;
+  }
+  @include for-size(md) {
+    width: 900px;
+  }
+  @include for-size(sm) {
+    width: 600px;
+  }
+  @include for-size(lt-sm) {
+    width: 100%;
+    padding: 2px;
+  }
+  .assortment_info{
+    padding: 20px;
+    width: 100%;
+    @include card_shadow;
+
+
+
+  }
+  .assortment_slider_div{
+height: 0;
+    position: absolute;
+  }
+
+  .assortment_parent{
+    padding: 20px;
+    @include card_shadow;
+
+    .img_cont {
+      width: 40%;
+      height: 300px;
+      margin-bottom: 40px;
+      @include for-size(lt-md) {
+        height: auto !important;
+        width: 100%;
+      }
+
+      img {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        &:hover{
+          @include card_shadow_hover;
+        }
+
+      }
+    }
+  }
+
+}
+

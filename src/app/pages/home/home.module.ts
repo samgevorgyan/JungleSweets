@@ -11,8 +11,12 @@ import { SlilderComponent } from './slilder/slilder.component';
 import { AssortmentComponent } from './assortment/assortment.component';
 import { OrderCakeComponent } from './order-cake/order-cake.component';
 import { AboutmeComponent } from './aboutme/aboutme.component';
+import { ShowAssortmentComponent } from './assortment/show-assortment/show-assortment.component';
 
-export const routes: Routes = [{ path: '', component: HomeComponent }];
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'assortment/:id', component: ShowAssortmentComponent },
+];
 
 @NgModule({
   declarations: [
@@ -21,6 +25,7 @@ export const routes: Routes = [{ path: '', component: HomeComponent }];
     AssortmentComponent,
     OrderCakeComponent,
     AboutmeComponent,
+    ShowAssortmentComponent,
   ],
   imports: [
     CommonModule,
