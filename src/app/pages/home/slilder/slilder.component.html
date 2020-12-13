@@ -1,6 +1,6 @@
 <div class="slider_container">
   <ng-image-slider
-    *ngIf="imageObject.length > 0"
+    *ngIf="imageObject.length > 0 && isBrowser"
     [images]="imageObject"
     [infinite]="true"
     [autoSlide]="4"

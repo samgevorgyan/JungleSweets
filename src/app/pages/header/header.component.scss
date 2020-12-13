@@ -53,10 +53,17 @@ header {
           font-size: 16px;
         }
       }
+
     }
   }
 }
+.admin_ul{
+  font-size: 21px;
+  color: $main_gold_color;
+  padding: 10px 5px;
+  background-color: white;
 
+}
 ::ng-deep .mat-menu-panel {
   min-width: auto !important;
   min-height: auto !important;

@@ -1,27 +1,32 @@
-import { Location } from "@angular/common";
+import { Location } from '@angular/common';
 import {
-  LocalizeRouterModule,
   LocalizeParser,
+  LocalizeRouterModule,
   LocalizeRouterSettings,
-  ManualParserLoader
-} from "@gilsdav/ngx-translate-router";
-import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { routes } from "./app.routes";
-import { TranslateService } from "@ngx-translate/core";
-import { languages } from "./utils/language.list";
+} from '@gilsdav/ngx-translate-router';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes';
+import { TranslateService } from '@ngx-translate/core';
+import { LocalizeRouterHttpLoader } from '@gilsdav/ngx-translate-router-http-loader';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
+// import { join } from 'path';
+
+const distFolder = `${environment.ssrUrl}assets/i18n/configi18.json`;
 
 export function createTranslateLoaderRouter(
   translate: TranslateService,
   location: Location,
-  settings: LocalizeRouterSettings
+  settings: LocalizeRouterSettings,
+  http: HttpClient
 ) {
-  return new ManualParserLoader(
+  return new LocalizeRouterHttpLoader(
     translate,
     location,
     settings,
-    languages,
-    "ROUTES."
+    http,
+    distFolder
   );
 }
 
@@ -32,10 +37,13 @@ export function createTranslateLoaderRouter(
       parser: {
         provide: LocalizeParser,
         useFactory: createTranslateLoaderRouter,
-        deps: [TranslateService, Location, LocalizeRouterSettings]
-      }
-    })
+        deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient],
+      },
+    }),
   ],
-  exports: [RouterModule]
+
+  exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+  constructor() {}
+}

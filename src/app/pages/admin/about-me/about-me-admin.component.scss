@@ -1,0 +1,46 @@
+@import "../../../../variable";
+.about_me_cont {
+  width: 1280px;
+  background-color: white;
+  margin: auto;
+
+  @include for-size(lgm) {
+    width: 1200px;
+  }
+  @include for-size(md) {
+    width: 900px;
+  }
+  @include for-size(sm) {
+    width: 600px;
+  }
+  @include for-size(lt-sm) {
+    width: 100%;
+  }
+  @include card_shadow;
+
+
+  .about_me{
+  padding: 20px;
+    margin-top: 20px;
+  .slider_images {
+    width: 200px;
+    height: 200px;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+    }
+    fa-icon {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: red;
+      cursor: pointer;
+    }
+  }
+  }
+}

@@ -10,16 +10,16 @@
   <div   class="assortment_info" fxLayout="column"
        fxLayoutAlign="center start"
        fxLayoutGap="40px">
-    <h2 > {{ (currentLanguage$ | async) === 'am' ? assortmentArray.data.title.am : assortmentArray.data.title.en }}</h2>
+    <h2 > {{ (currentLanguage$ | async) === 'am' ? assortment.title.am : assortment.title.en }}</h2>
     <p> {{
       (currentLanguage$ | async) === 'am'
-        ? assortmentArray.data.description.am
-        : assortmentArray.data.description.en
+        ? assortment.description.am
+        : assortment.description.en
       }}</p>
   </div>
 
 
-  <div class="assortment_slider_div">
+  <div class="assortment_slider_div" *ngIf="isBrowser">
     <ng-image-slider
       [images]="assortmentSliderArray"
       [infinite]="false"
@@ -39,10 +39,26 @@
   >
     <div
       class="img_cont"
-      *ngFor="let imgUrl of assortmentArray.data.urls; index as i"
+      *ngFor="let imgUrl of assortment.urls; index as i"
       (click)="imagesCarousel(i)"
     >
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{imgUrl.name.am}}
+
+          {{
+          (currentLanguage$ | async) === 'am'
+            ? imgUrl.name.am
+            : imgUrl.name.en
+          }}
+        </mat-card-title>
+        <mat-card-subtitle>{{ imgUrl.price }} {{ imgUrl.price ? ('HOME.ASSORTMENTS.CURRENCY' | translate) : ''}}</mat-card-subtitle>
+      </mat-card-header>
       <img [src]="imgUrl.url" [alt]="imgUrl.url">
+
+    </mat-card>
     </div>
+
   </div>
 </div>

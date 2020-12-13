@@ -1,51 +1,39 @@
-import { async } from '@angular/core/testing';
 import {
-  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Injector, PLATFORM_ID } from '@angular/core';
 
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import {
-  catchError,
-  delay,
-  filter,
-  map,
-  retry,
-  switchMap,
-  take,
-  tap,
-  finalize,
-} from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable()
 export class HttpMainInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    private injector: Injector
+  ) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    request = this.addToken(
-      request,
-      '4b94ac33b867df53-e6789a995291f558-50eda386730e29bb'
-    );
-
-    return next.handle(request);
-  }
-
-  private addToken(request: HttpRequest<any>, authToken: string) {
-    return request.clone({
+    request.clone({
       setHeaders: {
-        'X-Viber-Auth-Token': authToken
-          ? authToken
-          : btoa('HayasteneShatLavBanEJanDuduyDuduyDuduy'),
         'Access-Control-Allow-Origin': '*',
         Accept: '*/*',
       },
     });
+    return next.handle(request).pipe(
+      tap((res) => {
+        console.log('from http interceptor');
+      }),
+      catchError((error) => {
+        console.log('error from interceptr', error);
+        return throwError(error);
+      })
+    );
   }
 }

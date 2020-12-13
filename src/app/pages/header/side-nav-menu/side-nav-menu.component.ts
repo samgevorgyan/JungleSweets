@@ -3,7 +3,6 @@ import { LanguageService } from 'src/app/shared/services/language.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { languageList } from 'src/app/utils/language.list';
 import { TranslateService } from '@ngx-translate/core';
-import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -21,8 +20,7 @@ export class SideNavMenuComponent implements OnInit {
 
   constructor(
     private languageService: LanguageService,
-    private translate: TranslateService,
-    private localizeService: LocalizeRouterService
+    private translate: TranslateService
   ) {
     this.user$ = this.user;
   }
@@ -39,7 +37,7 @@ export class SideNavMenuComponent implements OnInit {
 
   changeLanguage(lang: string) {
     this.translate.use(lang);
-    this.localizeService.changeLanguage(lang);
+    this.languageService.changeLanguage(lang);
     this.languageService.emitLanguageChange(lang);
   }
 }

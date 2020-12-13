@@ -1,10 +1,17 @@
 import { Subject } from 'rxjs';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild,
+} from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { tap, shareReplay, map } from 'rxjs/operators';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 export interface Item {
   url: string;
 }
@@ -15,12 +22,18 @@ export interface Item {
 })
 export class SlilderComponent implements OnInit {
   @ViewChild('nav') slider: NgImageSliderComponent;
-
+  isBrowser = false;
   imageObject: Array<{ thumbImage: string; alt: string }> = [];
-  constructor(private afs: AngularFirestore) {}
+  constructor(
+    private afs: AngularFirestore,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {}
 
   ngOnInit() {
     this.getSliderImagesUrl('slider-img');
+    if (isPlatformBrowser(this.platformId)) {
+      this.isBrowser = true;
+    }
   }
 
   prevImageClick() {

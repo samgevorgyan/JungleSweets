@@ -1,8 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AdminService } from './admin.service';
 import { Observable, Subscription } from 'rxjs';
-import { AssortmentsInterface } from 'src/app/models/assortments.interface';
+
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Assortment } from '../../models/assortments.interface';
+import { AboutMe } from '../../models/about.me.interface';
+import { FbDatabasePathsPaths } from '../../enums/fbDatabasePaths';
+import { FbStoragePaths } from '../../enums/fbStoragePaths';
+import { Slider } from '../../models/slider.interface';
 
 @Component({
   selector: 'jungle-admin',
@@ -10,24 +15,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit, OnDestroy {
-  sliderImageUrls$: Observable<Array<{ id: string; url: string }>>;
-  aboutmeImageUrl$: Observable<any>;
-
-  assortments$: Observable<Array<AssortmentsInterface>>;
+  sliderImageUrls$: Observable<Slider[]>;
   subscription = new Subscription();
-  addNewAssortment: AssortmentsInterface;
-  newAssortmentsImagesArray: Array<any>;
-  amTitile = '';
-  enTitile = '';
-  enDescription = '';
-  amDescription = '';
-  amAboutme = '';
-  enAboutme = '';
-  price = '';
-  idForUpdate: string | null = null;
-  idForAboutMeUpdate: string | null = null;
-
-  assortmentUploadInput: any;
 
   constructor(
     public adminService: AdminService,
@@ -35,136 +24,45 @@ export class AdminComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.getSliderImages('slider-img');
-    this.getAboutMeImages('aboutme-img');
-    this.getAboutMeTexts('about-me');
-    this.getAssortments('assortments');
+    this.getSliderImages(FbDatabasePathsPaths.sliderImg);
   }
 
   getSliderImages(path: string) {
     this.sliderImageUrls$ = this.adminService.getCollectionFromDb(path);
+    // this.sliderImageUrls$.subscribe((res) => {
+    //   console.log('res', res);
+    // });
   }
-
-  getAboutMeImages(path: string) {
-    this.aboutmeImageUrl$ = this.adminService.getCollectionFromDb(path);
-  }
-
-  getAboutMeTexts(path: string) {
-    this.adminService.getCollectionFromDb(path).subscribe((res) => {
-      console.log('res', res);
-      this.amAboutme = res[0]['data'].aboutme.am;
-      this.enAboutme = res[0]['data'].aboutme.en;
-      this.idForAboutMeUpdate = res[0]['id'];
-      console.log('amAboutme', this.amAboutme);
-      console.log('enAboutme', this.enAboutme);
-      console.log('idForAboutMeUpdate', this.idForAboutMeUpdate);
-    });
-  }
-
-  getAssortments(path: string) {
-    this.assortments$ = this.adminService.getCollectionFromDb(path);
-  }
-
-  deleteFromSlider(id: string, path: string, url: string) {
-    this.adminService.deleteFromStorageBase(id, path, url).then((res) => {
-      console.log('resssssssss', res);
-    });
-  }
-
-  uploadFile(event: any, path: string, save: boolean) {
-    const file = event.target.files[0];
-    this.adminService.uploadFile(file, path, save);
-  }
-
-  uploadAssortmentFiles(event: any, path: string, save: boolean) {
-    Array.from(event.target.files).forEach((file: File) => {
-      this.adminService.uploadFile(file, path, save);
-    });
-  }
-
-  saveAboutme() {
-    const data = {
-      aboutme: {
-        am: this.amAboutme,
-        en: this.enAboutme,
-      },
-    };
-    if (this.idForAboutMeUpdate !== null) {
-      const path = `about-me/${this.idForAboutMeUpdate}`;
-
-      this.adminService.setToDataBaseDocument(data, path);
-    } else {
-      this.adminService.setToDataBase(data, 'about-me', 'data');
+  uploadAssortmentFiles(event, id, urls) {
+    if (event.target.files.length === 0) {
+      return;
     }
-  }
-
-  addNewAssortmentFunc() {
-    if (
-      this.amTitile === '' ||
-      this.enTitile === '' ||
-      this.enDescription === '' ||
-      this.amDescription === '' ||
-      this.price === ''
-    ) {
-      return false;
-    }
-    this.addNewAssortment = {
-      data: {
-        title: {
-          am: this.amTitile ? this.amTitile : '',
-          en: this.enTitile ? this.enTitile : '',
+    [...event.target.files].forEach((file) => {
+      this.adminService.imageRender(file).subscribe(
+        (base64tempUrl: string) => {
+          this.adminService
+            .uploadFile(file, FbStoragePaths.sliderImg)
+            .then(async (url) => {
+              urls.push(url);
+              const path = `${FbDatabasePathsPaths.sliderImg}/${id}`;
+              await this.adminService.updateDataBaseDocument({ urls }, path);
+            });
         },
-        description: {
-          am: this.amDescription,
-          en: this.enDescription,
-        },
-        price: this.price,
-        urls: this.adminService.tempUrls,
-      },
-    };
-    if (this.idForUpdate === null) {
-      this.adminService.setToDataBase(
-        this.addNewAssortment,
-        'assortments',
-        'data'
+        (noAcceptable) => {
+          alert(noAcceptable);
+        }
       );
-    } else {
-      this.adminService.setToDataBaseDocument(
-        this.addNewAssortment,
-        'assortments/' + this.idForUpdate
-      );
-    }
-
-    this.resetForm();
-  }
-
-  resetForm() {
-    this.amTitile = '';
-    this.enTitile = '';
-    this.amDescription = '';
-    this.enDescription = '';
-    this.price = '';
-    this.adminService.tempUrls = [];
-    this.idForUpdate = null;
-    this.assortmentUploadInput = '';
-  }
-
-  makeMainImage(i: number) {
-    this.adminService.tempUrls.forEach((item) => {
-      item.main = false;
     });
-    this.adminService.tempUrls[i].main = true;
   }
 
-  editAssortment(item: any, el: HTMLElement) {
-    this.amTitile = item.data.title.am;
-    this.enTitile = item.data.title.en;
-    this.amDescription = item.data.description.am;
-    this.enDescription = item.data.description.en;
-    this.price = item.data.price;
-    this.adminService.tempUrls = item.data.urls;
-    this.idForUpdate = item.id;
-    el.scrollIntoView();
+  deleteFromSlider(url: string, id: string, data: any, index: number) {
+    this.adminService
+      .deleteImageFromStorage(FbStoragePaths.sliderImg, url)
+      .then(async (res) => {
+        data.splice(index, 1);
+        const path = `${FbDatabasePathsPaths.sliderImg}/${id}`;
+        await this.adminService.updateDataBaseDocument({ urls: data }, path);
+      });
   }
 
   ngOnDestroy(): void {

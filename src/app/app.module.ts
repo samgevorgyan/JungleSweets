@@ -20,8 +20,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(
+    http,
+    `${environment.ssrUrl}assets/i18n/`,
+    '.json'
+  );
 }
 
 @NgModule({
@@ -32,7 +37,7 @@ export function createTranslateLoader(http: HttpClient) {
     SideNavMenuComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
 
     BrowserAnimationsModule,
@@ -48,6 +53,7 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     ShareModule,
     AppRoutingModule,
+    LocalizeRouterModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpMainInterceptor, multi: true },

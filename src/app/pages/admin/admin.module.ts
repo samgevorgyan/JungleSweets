@@ -8,14 +8,23 @@ import { OrderModule } from 'ngx-order-pipe';
 import { FormsModule } from '@angular/forms';
 import { AdminLoginComponent } from './login/admin-login.component';
 import { AdminLoginGuard } from './guards/login.guard';
+import { AboutMeAdminComponent } from './about-me/about-me-admin.component';
+import { AssortmentAdminComponent } from './assortment/assortment-admin.component';
 
 export const routes: Routes = [
   { path: '', component: AdminLoginComponent },
-  { path: 'main', component: AdminComponent, canActivate: [AdminLoginGuard] },
+  { path: 'main', component: AdminComponent },
+  { path: 'about', component: AboutMeAdminComponent },
+  { path: 'assortments', component: AssortmentAdminComponent },
 ];
 
 @NgModule({
-  declarations: [AdminComponent, AdminLoginComponent],
+  declarations: [
+    AdminComponent,
+    AdminLoginComponent,
+    AboutMeAdminComponent,
+    AssortmentAdminComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

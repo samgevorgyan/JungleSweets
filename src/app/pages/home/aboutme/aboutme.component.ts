@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { LanguageService } from 'src/app/shared/services/language.service';
+import { FbDatabasePathsPaths } from '../../../enums/fbDatabasePaths';
 
 @Component({
   selector: 'jungle-aboutme',
@@ -10,8 +11,7 @@ import { LanguageService } from 'src/app/shared/services/language.service';
   styleUrls: ['./aboutme.component.scss'],
 })
 export class AboutmeComponent implements OnInit {
-  aboutMeUrl$: Observable<any>;
-  aboutMeText$: Observable<any>;
+  aboutMe$: Observable<any>;
   currentLanguage$: Observable<string>;
   showAllText = false;
   constructor(
@@ -21,21 +21,8 @@ export class AboutmeComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentLanguage$ = this.languageService.languageFromUrl$;
-    this.aboutMeUrl$ = this.afs
-      .collection<any>('aboutme-img')
-      .snapshotChanges()
-      .pipe(
-        map((actions) =>
-          actions.map((a) => {
-            const data = a.payload.doc.data();
-            const id = a.payload.doc.id;
-            return { id, ...data };
-          })
-        )
-      );
-
-    this.aboutMeText$ = this.afs
-      .collection<any>('about-me')
+    this.aboutMe$ = this.afs
+      .collection<any>(FbDatabasePathsPaths.aboutMe)
       .snapshotChanges()
       .pipe(
         map((actions) =>

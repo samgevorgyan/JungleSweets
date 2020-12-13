@@ -11,12 +11,12 @@
     fxLayoutAlign="center center"
     *ngFor="let item of assortmentsArray"
   >
-    <div class="assortment_img_div" [routerLink]="['../assortment', item.id]">
+    <div class="assortment_img_div" [routerLink]="['assortment', item.id]">
       <img [src]="item.imageToShow" [alt]="item.imageToShow">>
     </div>
 
 
-    <button [routerLink]="['../assortment', item.id]">
+    <button [routerLink]="['assortment', item.id]">
       {{
 
          'COMMON.SEEMORE' | translate

@@ -1,52 +1,79 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { catchError, finalize, map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AssortmentsInterface } from '../../models/assortments.interface';
+import { Observable, throwError } from 'rxjs';
+import firebase from 'firebase';
+import { Router } from '@angular/router';
+import FirebaseError = firebase.FirebaseError;
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { Slider } from '../../models/slider.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
-  tempUrls: Array<{ main: boolean; url: string }> = [];
   isLogedin = false;
+
   constructor(
     private storage: AngularFireStorage,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private router: Router,
+    private localize: LocalizeRouterService
   ) {}
 
-  uploadFile(file: File, path: string, save: boolean) {
-    const filePath = `${path}/${new Date().getTime()}_${file.name} `;
-    const ref = this.storage.ref(filePath);
-    console.log('ref', ref);
-    const task = ref.put(file);
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          ref.getDownloadURL().subscribe((url) => {
-            if (save) {
-              this.setToDataBase(url, path);
-            } else {
-              if (this.tempUrls.length === 0) {
-                this.tempUrls.push({ main: true, url });
-              } else {
-                this.tempUrls.push({ main: false, url });
-              }
-            }
-          });
-        })
-      )
-      .subscribe();
+  uploadFile(file: File, path: string): Promise<string> {
+    return new Promise((resolve) => {
+      const filePath = `${path}/${new Date().getTime()}_${file.name} `;
+      const ref = this.storage.ref(filePath);
+      const uploadedFile = ref.put(file);
+      uploadedFile
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            ref.getDownloadURL().subscribe((url: string) => {
+              resolve(url);
+            });
+          }),
+          catchError((err) => {
+            this.permissionError(err);
+            return throwError(err);
+          })
+        )
+        .subscribe();
+    });
   }
 
-  setToDataBase(data: any, path: string, key: string = 'url') {
-    this.afs.collection<any>(path).add({ [key]: data.data });
+  imageRender(file) {
+    return new Observable((res) => {
+      const mimeType = file.type;
+      if (mimeType.match(/image\/*/) == null) {
+        res.error('only images are acceptable');
+      }
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (_event) => {
+        res.next(reader.result);
+        res.complete();
+      };
+    });
   }
 
-  setToDataBaseDocument(data: any, path: string) {
-    this.afs.doc<any>(path).update({ data: data.data });
+  setToDataBase(data: any, path: string) {
+    return this.afs.collection<any>(path).add(data).catch(this.permissionError);
+  }
+
+  updateDataBaseDocument(data: any, path: string) {
+    return this.afs.doc<any>(path).update(data).catch(this.permissionError);
+  }
+
+  getTest(path: string) {
+    this.afs
+      .doc<any>(path)
+      .valueChanges()
+      .subscribe((ress) => {
+        console.log('resssssssssssssss', ress);
+      });
   }
 
   getCollectionFromDb(path: string) {
@@ -64,24 +91,20 @@ export class AdminService {
       );
   }
 
-  deleteSliderImgUrl(id: string, path: string) {
-    this.afs.doc(path + '/' + id).delete();
+  async deleteImageFromStorage(storagePath: string, url: string) {
+    await this.storage.storage
+      .ref(storagePath)
+      .storage.refFromURL(url)
+      .delete();
   }
 
-  deleteAssortImgUrl(url: string) {
-    this.tempUrls = this.tempUrls.filter((item) => item.url !== url);
-  }
-  async deleteFromStorageBase(id: string, path: string, url: string) {
-    await this.storage.storage
-      .ref(path)
-      .storage.refFromURL(url)
-      .delete()
-      .then(() => {
-        if (id === '') {
-          this.deleteAssortImgUrl(url);
-        } else {
-          this.deleteSliderImgUrl(id, path);
-        }
-      });
+  permissionError(errorPerm: FirebaseError) {
+    if (
+      errorPerm.code.includes('permission-denied') ||
+      errorPerm.code.includes('storage/unauthorized')
+    ) {
+      const goAdmin: any = this.localize.translateRoute('/admin');
+      this.router.navigate([goAdmin]);
+    }
   }
 }

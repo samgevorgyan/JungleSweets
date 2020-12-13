@@ -1,12 +1,16 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { languageList } from 'src/app/utils/language.list';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/shared/services/language.service';
-import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import {
+  LocalizedRouter,
+  LocalizeRouterService,
+} from '@gilsdav/ngx-translate-router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'main-header',
@@ -14,6 +18,7 @@ import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() isAdmin: boolean;
   languageList = languageList;
   languageFromUrl$ = this.languageService.languageFromUrl$;
   isMenuOpend: boolean;
@@ -28,17 +33,20 @@ export class HeaderComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private languageService: LanguageService,
-    private localizeService: LocalizeRouterService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private localize: LocalizeRouterService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.languageFromUrl$.subscribe((lang: string) => {
       this.setSelectedLanguage(lang);
-      console.log('subscribe headeric');
     });
   }
-
+  NavigateByUrl(url) {
+    const urlToNavigate: any = this.localize.translateRoute(url);
+    this.router.navigate([urlToNavigate]);
+  }
   openLoginModal() {
     // this.dialogService.openDialog(LoginDialogComponent, "650px");
   }
@@ -55,7 +63,7 @@ export class HeaderComponent implements OnInit {
 
   changeLanguage(lang: string) {
     this.translate.use(lang);
-    this.localizeService.changeLanguage(lang);
+    this.languageService.changeLanguage(lang);
     this.languageService.emitLanguageChange(lang);
     this.setSelectedLanguage(lang);
   }

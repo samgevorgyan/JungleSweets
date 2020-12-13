@@ -20,6 +20,8 @@
   },
   "COMMON": {
     "SEEMORE": "See more",
-    "SEELESS": "See less"
+    "SEELESS": "See less",
+    "READMORE": "Read more",
+    "READLESS": "Read less"
   }
 }

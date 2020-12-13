@@ -37,7 +37,6 @@ export class AdminLoginComponent implements OnInit {
     this.afAuth
       .signInWithEmailAndPassword(this.email.value, this.password.value)
       .then((res) => {
-        console.log('res', res);
         if (res.user) {
           this.adminService.isLogedin = true;
 

@@ -5,6 +5,7 @@
   fxLayoutAlign="center start"
   fxLayoutAlign.lt-md="center center"
   fxLayoutGap="10px"
+  *ngIf="(aboutMe$ | async) as aboutMe"
 >
   <div
     class="my_story_div"
@@ -19,12 +20,12 @@
         <div class="design_line_line"></div>
       </div>
     </div>
-    <div class="story_text_div" *ngIf="aboutMeText$ | async as text">
+    <div class="story_text_div"  >
       <h6 [ngClass]="{ readmore: showAllText }">
         {{
           (currentLanguage$ | async) === 'am'
-            ? text[0]?.data.aboutme.am
-            : text[0]?.data.aboutme.en
+            ? aboutMe[0].aboutme.am
+            : aboutMe[0].aboutme.en
         }}
       </h6>
     </div>
@@ -37,6 +38,6 @@
     </button>
   </div>
   <div class="my_img_div" fxFlex="40" fxFlex.lt-md="100" fxFlexOrder.lt-md="0">
-    <img *ngIf="aboutMeUrl$ | async as url" [src]="url[0].url" alt="" />
+    <img   [src]="aboutMe[0].url" alt="" />
   </div>
 </div>

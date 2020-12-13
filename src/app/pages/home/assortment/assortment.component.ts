@@ -26,17 +26,19 @@ export class AssortmentComponent implements OnInit {
   }
 
   getAssortmentImagesUrl(path: string) {
-    this.homeService.getAssortmentImages(path).subscribe((res) => {
+    this.homeService.getAllAssortments(path).subscribe((res) => {
       this.assortmentsArray = [];
       res.forEach((item) => {
-        const imageToShow = item.data.urls.find((image) => image.main === true);
+        const imageToShow = item.urls.find((image) => image.main === true);
+        console.log('item.urls[0]', item.urls[0]);
+        console.log('imageToShow', imageToShow);
         this.assortmentsArray.push({
-          imageToShow: imageToShow.url,
-          amTitle: item.data.title.am,
-          enTitle: item.data.title.en,
-          amDescription: item.data.description.am,
-          enDescription: item.data.description.en,
-          price: item.data.price,
+          imageToShow: imageToShow ? imageToShow.url : item.urls[0].url,
+          amTitle: item.title.am,
+          enTitle: item.title.en,
+          amDescription: item.description.am,
+          enDescription: item.description.en,
+          price: item.price,
           id: item.id,
         });
       });

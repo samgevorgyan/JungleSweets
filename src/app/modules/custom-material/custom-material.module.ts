@@ -7,6 +7,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -19,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
     MatBadgeModule,
     MatButtonModule,
     MatInputModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class CustomMaterialModule {}

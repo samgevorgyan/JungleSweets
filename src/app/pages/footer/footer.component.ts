@@ -1,12 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: "main-footer",
-  templateUrl: "./footer.component.html",
-  styleUrls: ["./footer.component.scss"]
+  selector: 'main-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   ngOnInit(): void {}
   get isMobile() {
@@ -19,9 +20,10 @@ export class FooterComponent implements OnInit {
       /BlackBerry/i,
       /Windows Phone/i,
     ];
-
-    return toMatch.some((toMatchItem) => {
-      return navigator.userAgent.match(toMatchItem);
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      return toMatch.some((toMatchItem) => {
+        return navigator.userAgent.match(toMatchItem);
+      });
+    }
   }
 }

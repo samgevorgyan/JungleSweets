@@ -10,4 +10,5 @@ export const environment = {
     appId: '1:821964923546:web:6a3c8cbbfef9695cd73523',
     measurementId: 'G-PDDWVBMJHB',
   },
+  ssrUrl: 'https://www.junglesweets.com/',
 };

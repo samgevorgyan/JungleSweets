@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -8,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class HomeService {
   constructor(private afs: AngularFirestore) {}
 
-  getAssortmentImages(path: string) {
+  getAllAssortments(path: string) {
     return this.afs
       .collection<any>(path)
       .snapshotChanges()
@@ -21,5 +24,8 @@ export class HomeService {
           })
         )
       );
+  }
+  getAssortmentById(id: string) {
+    return this.afs.doc<any>(`assortments/${id}`).valueChanges();
   }
 }

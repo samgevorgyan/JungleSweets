@@ -52,8 +52,19 @@
               </div>
             </mat-menu>
           </div>
+
         </div>
       </mat-toolbar>
+
+      <div *ngIf="isAdmin" class="admin_ul"  >
+        <ul fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <li class="c_pointer" (click)="NavigateByUrl('/admin/main')" >Main</li>
+          <li class="c_pointer" (click)="NavigateByUrl('/admin/about')" >About</li>
+          <li class="c_pointer" (click)="NavigateByUrl('/admin/assortments')" >Assortments</li>
+
+        </ul>
+
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </header>
