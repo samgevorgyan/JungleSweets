@@ -18,9 +18,14 @@ import { SideNavMenuComponent } from './pages/header/side-nav-menu/side-nav-menu
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // translate modules
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+
+// AngularFire modules
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ServiceWorkerModule } from '@angular/service-worker';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(
     http,
@@ -42,7 +47,9 @@ export function createTranslateLoader(http: HttpClient) {
 
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAnalyticsModule,
     AngularFireStorageModule,
+    AngularFireAuthModule,
 
     TranslateModule.forRoot({
       loader: {
@@ -54,6 +61,7 @@ export function createTranslateLoader(http: HttpClient) {
     ShareModule,
     AppRoutingModule,
     LocalizeRouterModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpMainInterceptor, multi: true },

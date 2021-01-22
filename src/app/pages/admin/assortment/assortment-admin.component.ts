@@ -179,11 +179,7 @@ export class AssortmentAdminComponent implements OnInit {
     });
     this.assortmentsImages[i].main = true;
   }
-  deleteAssortment(id: string, path: string, url: string) {
-    // this.adminService.deleteFromStorageAndDb(id, path, url).then((res) => {
-    //   console.log('resssssssss', res);
-    // });
-  }
+  deleteAssortment(id: string, path: string, url: string) {}
   deleteAssortmentImage(index: number, url: string) {
     const indexDelta =
       this.assortmentsImages.length - this.uploadedFiles.length;
@@ -193,7 +189,5 @@ export class AssortmentAdminComponent implements OnInit {
     } else {
       this.uploadedFiles.splice(index - indexDelta, 1);
     }
-    console.log('this.uploadedFiles', this.uploadedFiles);
-    console.log('this.assortmentsImages', this.assortmentsImages);
   }
 }

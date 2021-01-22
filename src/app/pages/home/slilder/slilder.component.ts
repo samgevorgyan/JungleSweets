@@ -12,6 +12,8 @@ import { tap, shareReplay, map } from 'rxjs/operators';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { FbDatabasePathsPaths } from '../../../enums/fbDatabasePaths';
+import { Slider } from '../../../models/slider.interface';
 export interface Item {
   url: string;
 }
@@ -30,7 +32,7 @@ export class SlilderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getSliderImagesUrl('slider-img');
+    this.getSliderImagesUrl(FbDatabasePathsPaths.sliderImg);
     if (isPlatformBrowser(this.platformId)) {
       this.isBrowser = true;
     }
@@ -46,7 +48,7 @@ export class SlilderComponent implements OnInit {
 
   getSliderImagesUrl(path: string) {
     this.afs
-      .collection<Item>(path)
+      .collection<any>(path)
       .snapshotChanges()
       .pipe(
         map((actions) =>
@@ -57,11 +59,12 @@ export class SlilderComponent implements OnInit {
           })
         )
       )
-      .subscribe((res) => {
-        res.forEach((item) => {
+      .subscribe((res: any) => {
+        res[0].urls.forEach((item) => {
+          console.log('res', res);
           this.imageObject.push({
-            thumbImage: item.url,
-            alt: item.id,
+            thumbImage: item,
+            alt: item,
           });
         });
       });

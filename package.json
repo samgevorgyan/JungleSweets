@@ -16,7 +16,7 @@
   },
   "private": true,
   "engines": {
-    "node": "10"
+    "node": "12"
   },
   "dependencies": {
     "@angular/animations": "^11.0.2",
@@ -32,6 +32,7 @@
     "@angular/platform-browser-dynamic": "^11.0.2",
     "@angular/platform-server": "^11.0.2",
     "@angular/router": "^11.0.2",
+    "@angular/service-worker": "^11.0.2",
     "@fortawesome/angular-fontawesome": "^0.8.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",

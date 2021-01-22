@@ -60,20 +60,24 @@ export class AdminService {
   }
 
   setToDataBase(data: any, path: string) {
-    return this.afs.collection<any>(path).add(data).catch(this.permissionError);
+    return this.afs
+      .collection<any>(path)
+      .add(data)
+      .catch(this.permissionError.bind(this));
   }
 
   updateDataBaseDocument(data: any, path: string) {
-    return this.afs.doc<any>(path).update(data).catch(this.permissionError);
+    return this.afs
+      .doc<any>(path)
+      .update(data)
+      .catch(this.permissionError.bind(this));
   }
 
   getTest(path: string) {
     this.afs
       .doc<any>(path)
       .valueChanges()
-      .subscribe((ress) => {
-        console.log('resssssssssssssss', ress);
-      });
+      .subscribe((ress) => {});
   }
 
   getCollectionFromDb(path: string) {

@@ -29,9 +29,6 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   getSliderImages(path: string) {
     this.sliderImageUrls$ = this.adminService.getCollectionFromDb(path);
-    // this.sliderImageUrls$.subscribe((res) => {
-    //   console.log('res', res);
-    // });
   }
   uploadAssortmentFiles(event, id, urls) {
     if (event.target.files.length === 0) {
