@@ -12,7 +12,8 @@
     "dev:ssr": "ng run jungle-sweets:serve-ssr",
     "serve:ssr": "node dist/server/main.js",
     "build:ssr": "ng build --prod && ng run jungle-sweets:server:production",
-    "prerender": "ng run jungle-sweets:prerender"
+    "prerender": "ng run jungle-sweets:prerender",
+    "ghp": "ng build --prod --output-path docs --base-href /JungleSweets/"
   },
   "private": true,
   "engines": {
