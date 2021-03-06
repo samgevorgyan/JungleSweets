@@ -1,0 +1,31 @@
+{
+  "HEADER": {
+    "LANGUAGE_SHOW": "Հայ",
+    "SIGN_IN": "Մուտք",
+    "SIGN_UP": "Գրանցվել",
+    "COURSES": "Դասընթաց"
+  },
+
+  "HOME": {
+    "ASSORTMENTS": {
+      "CURRENCY": "դրամ"
+    },
+    "ORDERBLOCK": {
+      "FORINFORMATION": "Պատվիրելու կամ տեղեկատվություն ստանալու համար, սեղմեք ներքևի հղումներին",
+      "CONTACTVIA": "Կապվել"
+    },
+    "ABOUTME": {
+      "STORY": "Մեր մասին"
+    }
+  },
+  "FOOTER": {
+    "CONTACT": "Կապ",
+    "EMAIL": " Էլ․ հասցե:"
+  },
+  "COMMON":{
+    "SEEMORE": "Տեսնել ավելին",
+    "SEELESS": "Տեսնել քիչ",
+    "READMORE": "Կարդալ ավելին",
+    "READLESS": "Փակել"
+  }
+}

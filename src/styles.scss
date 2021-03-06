@@ -71,7 +71,9 @@ body {
 .selected_language {
   border: 1px solid $main_gold_color;
 }
-
+.mat-drawer-backdrop {
+  opacity: 0;
+}
 .mat-toolbar,
 .mat-toolbar h1,
 .mat-toolbar h2,
@@ -82,10 +84,10 @@ body {
   font-family: Cormorant-italic, serif;
 }
 
-ul{
+ul {
   list-style: none;
 }
-.c_pointer{
+.c_pointer {
   cursor: pointer;
 }
 input[type='file'] {

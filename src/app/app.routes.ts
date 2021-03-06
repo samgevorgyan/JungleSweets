@@ -9,9 +9,14 @@ export const routes: Routes = [
       import('./pages/home/home.module').then((mod) => mod.HomeModule),
   },
   {
+    path: 'courses',
+    loadChildren: () =>
+      import('./pages/courses/courses.module').then((mod) => mod.CoursesModule),
+  },
+  {
     path: 'admin',
     loadChildren: () =>
       import('./pages/admin/admin.module').then((mod) => mod.AdminModule),
   },
-  // { path: '**', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];

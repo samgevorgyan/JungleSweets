@@ -1,0 +1,29 @@
+@import '../../../../variable';
+
+.course_content_cont {
+  h1 {
+    width: 100%;
+    text-align: center;
+    margin: 90px 0 !important;
+    font-size: 42px;
+  }
+  .icon_div {
+    margin-right: 30px;
+    //width: 65px;
+    //height: 65px;
+    fa-icon {
+      font-size: 65px;
+    }
+  }
+  .course_content_title {
+    font-size: 22px;
+    line-height: 1.35;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .course_content_text {
+    font-size: 20px;
+    line-height: 1.35;
+    font-weight: 300;
+  }
+}

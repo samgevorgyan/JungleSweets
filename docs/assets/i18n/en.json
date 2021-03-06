@@ -1,0 +1,30 @@
+{
+  "HEADER": {
+    "LANGUAGE_SHOW": "En",
+    "SIGN_IN": "Sign in",
+    "SIGN_UP": "Sign up",
+    "COURSES": "Courses"
+  },
+  "HOME": {
+    "ASSORTMENTS": {
+      "CURRENCY": "AMD"
+    },
+    "ORDERBLOCK": {
+      "FORINFORMATION": "FOR INFORMATION OR ORDER PLEASE CLICK ON LINKS BELOW",
+      "CONTACTVIA": "Contact Via"
+    },
+    "ABOUTME": {
+      "STORY": "About us"
+    }
+  },
+  "FOOTER": {
+    "CONTACT": "Contact",
+    "EMAIL": "Email:"
+  },
+  "COMMON": {
+    "SEEMORE": "See more",
+    "SEELESS": "See less",
+    "READMORE": "Read more",
+    "READLESS": "Read less"
+  }
+}

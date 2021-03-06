@@ -1,6 +1,9 @@
 {
   "HEADER": {
-    "LANGUAGESHOW": "En"
+    "LANGUAGE_SHOW": "En",
+    "SIGN_IN": "Sign in",
+    "SIGN_UP": "Sign up",
+    "COURSES": "Courses"
   },
   "HOME": {
     "ASSORTMENTS": {

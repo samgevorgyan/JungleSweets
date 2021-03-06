@@ -30,7 +30,6 @@ export const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    TranslateModule.forChild(),
     ShareModule,
     NgImageSliderModule,
   ],

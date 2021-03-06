@@ -32,10 +32,26 @@ header {
     background-color: white;
     padding: 20px 0;
     position: relative;
-
+    .menu_icon {
+      position: absolute;
+      left: 40px;
+      &:hover {
+        cursor: pointer;
+        .menu_shorter_line {
+          width: 33px;
+          x: 0;
+          -webkit-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+        }
+      }
+    }
     .logo_part {
-      margin: auto;
       cursor: pointer;
+      margin-left: 40px;
+      @include for-size(lt-sm) {
+        margin: auto;
+      }
     }
 
     .links_part {
@@ -43,6 +59,9 @@ header {
       color: $main_gold_color;
       position: absolute;
       right: 40px;
+      span {
+        cursor: pointer;
+      }
       .language_part {
         cursor: pointer;
         text-transform: capitalize;
@@ -53,16 +72,14 @@ header {
           font-size: 16px;
         }
       }
-
     }
   }
 }
-.admin_ul{
+.admin_ul {
   font-size: 21px;
   color: $main_gold_color;
   padding: 10px 5px;
   background-color: white;
-
 }
 ::ng-deep .mat-menu-panel {
   min-width: auto !important;

@@ -44,13 +44,11 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
-
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAnalyticsModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -61,7 +59,9 @@ export function createTranslateLoader(http: HttpClient) {
     ShareModule,
     AppRoutingModule,
     LocalizeRouterModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpMainInterceptor, multi: true },

@@ -14,6 +14,13 @@ import {
   faAngleUp,
   faHeart,
   faTimesCircle,
+  faAlignRight,
+  faFilm,
+  faWrench,
+  faPepperHot,
+  faSnowman,
+  faComment,
+  faInfinity,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -38,7 +45,13 @@ export class CustomFontAwesomeModule {
       faViber,
       faInstagram,
       faWhatsapp,
-      faTimesCircle
+      faTimesCircle,
+      faFilm,
+      faWrench,
+      faPepperHot,
+      faSnowman,
+      faComment,
+      faInfinity
     );
   }
 }

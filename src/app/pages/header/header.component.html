@@ -1,6 +1,7 @@
 <header>
   <mat-sidenav-container class="sidenav-container" [hasBackdrop]="true">
     <mat-sidenav
+      [fxShow]="isHandset$ | async"
       #drawer
       class="sidenav"
       fixedInViewport="true"
@@ -13,27 +14,63 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar>
+        <div
+          class="menu_icon"
+          *ngIf="isHandset$ | async"
+          (click)="drawer.toggle()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            width="33px"
+            height="17px"
+            viewBox="0 0 33 17"
+            enable-background="new 0 0 33 17"
+            xml:space="preserve"
+          >
+            <rect fill="#C19C55" width="33" height="1"></rect>
+            <rect y="16" fill="#C19C55" width="33" height="1"></rect>
+            <rect
+              class="menu_shorter_line"
+              x="6.5"
+              y="8"
+              fill="#C19C55"
+              width="20"
+              height="1"
+            ></rect>
+          </svg>
+        </div>
         <div class="logo_part" [routerLink]="['../']">
           <img src="../../../assets/img/logo/leaf_logo.svg" />
         </div>
 
-        <div class="links_part">
-          <!-- <span class="login_part" (click)="openLoginModal()">
-            {{ 'HEADER.LOGIN' | translate }}</span
-          > -->
-
+        <div
+          class="links_part"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="20px"
+          *ngIf="!(isHandset$ | async)"
+        >
+          <span class="login_part" (click)="openLoginModal()">
+            {{ 'HEADER.SIGN_IN' | translate }}</span
+          >
+          <span (click)="navigateByUrl('/courses')">
+            {{ 'HEADER.COURSES' | translate }}</span
+          >
           <div
             class="language_part"
             [matMenuTriggerFor]="LanguageMenu"
-            (menuClosed)="isMenuOpend = false"
-            (menuOpened)="isMenuOpend = true"
+            (menuClosed)="isMenuOpened = false"
+            (menuOpened)="isMenuOpened = true"
             fxLayout="row"
             fxLayoutAlign="space-between center"
           >
-            {{ 'HEADER.LANGUAGESHOW' | translate }}
+            {{ 'HEADER.LANGUAGE_SHOW' | translate }}
 
-            <fa-icon icon="angle-down" *ngIf="!isMenuOpend"></fa-icon>
-            <fa-icon icon="angle-up" *ngIf="isMenuOpend"></fa-icon>
+            <fa-icon icon="angle-down" *ngIf="!isMenuOpened"></fa-icon>
+            <fa-icon icon="angle-up" *ngIf="isMenuOpened"></fa-icon>
 
             <mat-menu #LanguageMenu="matMenu">
               <div
@@ -52,18 +89,19 @@
               </div>
             </mat-menu>
           </div>
-
         </div>
       </mat-toolbar>
 
-      <div *ngIf="isAdmin" class="admin_ul"  >
+      <div *ngIf="isAdmin" class="admin_ul">
         <ul fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-          <li class="c_pointer" (click)="NavigateByUrl('/admin/main')" >Main</li>
-          <li class="c_pointer" (click)="NavigateByUrl('/admin/about')" >About</li>
-          <li class="c_pointer" (click)="NavigateByUrl('/admin/assortments')" >Assortments</li>
-
+          <li class="c_pointer" (click)="navigateByUrl('/admin/main')">Main</li>
+          <li class="c_pointer" (click)="navigateByUrl('/admin/about')">
+            About
+          </li>
+          <li class="c_pointer" (click)="navigateByUrl('/admin/assortments')">
+            Assortments
+          </li>
         </ul>
-
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

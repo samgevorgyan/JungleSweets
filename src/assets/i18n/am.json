@@ -1,6 +1,9 @@
 {
   "HEADER": {
-    "LANGUAGESHOW": "Հայ"
+    "LANGUAGE_SHOW": "Հայ",
+    "SIGN_IN": "Մուտք",
+    "SIGN_UP": "Գրանցվել",
+    "COURSES": "Դասընթաց"
   },
 
   "HOME": {

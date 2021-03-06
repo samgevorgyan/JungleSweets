@@ -4,13 +4,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { languageList } from 'src/app/utils/language.list';
-import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/shared/services/language.service';
-import {
-  LocalizedRouter,
-  LocalizeRouterService,
-} from '@gilsdav/ngx-translate-router';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'main-header',
@@ -21,7 +17,7 @@ export class HeaderComponent implements OnInit {
   @Input() isAdmin: boolean;
   languageList = languageList;
   languageFromUrl$ = this.languageService.languageFromUrl$;
-  isMenuOpend: boolean;
+  isMenuOpened: boolean;
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.XSmall)
     .pipe(
@@ -31,7 +27,6 @@ export class HeaderComponent implements OnInit {
     );
 
   constructor(
-    private translate: TranslateService,
     private languageService: LanguageService,
     private breakpointObserver: BreakpointObserver,
     private localize: LocalizeRouterService,
@@ -43,10 +38,12 @@ export class HeaderComponent implements OnInit {
       this.setSelectedLanguage(lang);
     });
   }
-  NavigateByUrl(url) {
+
+  navigateByUrl(url) {
     const urlToNavigate: any = this.localize.translateRoute(url);
     this.router.navigate([urlToNavigate]);
   }
+
   openLoginModal() {
     // this.dialogService.openDialog(LoginDialogComponent, "650px");
   }
@@ -62,7 +59,6 @@ export class HeaderComponent implements OnInit {
   }
 
   changeLanguage(lang: string) {
-    this.translate.use(lang);
     this.languageService.changeLanguage(lang);
     this.languageService.emitLanguageChange(lang);
     this.setSelectedLanguage(lang);
