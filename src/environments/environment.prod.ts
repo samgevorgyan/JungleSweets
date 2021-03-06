@@ -11,5 +11,5 @@ export const environment = {
     measurementId: 'G-PDDWVBMJHB',
   },
   // ssrUrl: 'https://www.junglesweets.com/',
-  ssrUrl: 'https://samgevorgyan.github.io/JungleSweets/',
+  ssrUrl: 'asd',
 };
