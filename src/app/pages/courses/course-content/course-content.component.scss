@@ -1,6 +1,9 @@
 @import '../../../../variable';
 
 .course_content_cont {
+  @include for-size(lt-md) {
+    padding: 30px;
+  }
   h1 {
     width: 100%;
     text-align: center;
