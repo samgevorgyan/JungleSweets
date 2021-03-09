@@ -1,0 +1,33 @@
+@import '../../../../variable';
+.force_buy_cont {
+  background-color: #fff5f6;
+  padding: 20px 0;
+  .buy_now_button_div {
+    text-align: center;
+    span {
+      margin-right: 50px;
+    }
+    .buy_now_button {
+      box-shadow: inset -2px -34px 17px -22px #ffdcb2;
+      background: linear-gradient(to bottom, #f0f0f0 5%, #e0b462 100%);
+      background-color: #f0f0f0;
+      border-radius: 6px;
+      border: 1px solid #fafafa;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      font-size: 23px;
+      font-weight: bold;
+      padding: 20px 60px;
+      text-decoration: none;
+      text-shadow: -2px -1px 14px #c19d56;
+      &:hover {
+        background: linear-gradient(to bottom, #e0b462 5%, #f0f0f0 100%);
+        background-color: #e0b462;
+      }
+    }
+  }
+  img {
+    width: 100%;
+  }
+}

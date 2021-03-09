@@ -1,0 +1,43 @@
+@import '../../../../variable';
+
+.who_is_for_cont {
+  @include for-size(lt-md) {
+    padding: 30px;
+  }
+  h1 {
+    font-size: 42px;
+    margin: 100px 0;
+  }
+  .who_is_column {
+    .column {
+      margin-left: 20px;
+      margin-right: 20px;
+      width: 230px;
+      text-align: center;
+      @include for-size(sm) {
+        width: 100%;
+      }
+      .who_is_image {
+        background-image: url('../../../../assets/img/courses/who-is-for/who_is1.svg');
+        background-repeat: no-repeat;
+
+        margin-bottom: 25px;
+        width: 100px;
+        height: 100px;
+        max-width: 100%;
+      }
+      .who_is_title {
+        margin-bottom: 25px;
+        margin-top: 18px;
+        font-size: 26px;
+        line-height: 1.35;
+        font-weight: 600;
+      }
+      .who_is_text {
+        font-size: 18px;
+        line-height: 1.55;
+        font-weight: 300;
+      }
+    }
+  }
+}
