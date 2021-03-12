@@ -17,6 +17,42 @@
       "STORY": "About us"
     }
   },
+  "COURSES": {
+    "ABOUT_PRODUCT": {
+
+    },
+    "COURSE_CONTENT": {
+      "WHAT_INCLUDE_COURSE": "What does the course include?",
+      "VIDEO": "Preparation video",
+      "RECIPE": "Recipe",
+      "FILLINGS": "Fillings",
+      "CUTTINGS": "cuttings",
+      "FEEDBACK": "Contact us for 3 months",
+      "UNLIMITED": "Unlimited access",
+      "DRAW_PRESENT:": "How to draw and present correctly?"
+
+    },
+    "WHO_IS_FOR": {
+      "FOR_WHO_IS_COURSE": "Who is the course for?",
+      "FOR_WHO_IS_COURSE_BEGINNER_TITLE": "For beginner confectioners",
+      "FOR_WHO_IS_COURSE_BEGINNER_TEXT": "If you are just starting out, you do not know how to attract customers? French pasta will help you in this matter, as they are always relevant and demanded",
+      "FOR_WHO_IS_COURSE_PROFESSIONAL_TITLE": "For experienced professionals",
+      "FOR_WHO_IS_COURSE_PROFESSIONAL_TEXT": "If you have skills in confectionery, it would be great to add it. One's. Macaroni will allow you to develop your mind: to have your own unique style in this area, as there are many ways to deliver it and unique.",
+      "FOR_WHO_IS_COURSE_MIDDLE_TITLE": "Confectionery for lovers",
+      "FOR_WHO_IS_COURSE_MIDDLE_TEXT": "It is a great option for those who like to cook and surprise themselves relatives, guests. It is very nicely served, they will definitely be satisfied with you all:"
+
+    },
+    "EASY_TO_EARN" : {
+      "WHY_CHOOSE_PASTA": "Why choose French macaron?",
+      "EASY_TO_PRODUCE_TITLE": "It is easy to present in your own way",
+      "EASY_TO_PRODUCE": "Easy to present in your own way, you choose how to serve or shape (if: the customer does not have a reasonable option)",
+      "EASY_TO_KEEP_TITLE": "Easy to store",
+      "EASY_TO_KEEP": "It is easy to store because they are very well stored in the freezer you save your time. And in case of a random order, it becomes easier your work.",
+      "POSSIBILITY_TO_EARN_TITLE": "Good way to make money",
+      "POSSIBILITY_TO_EARN": "It's a good way to make money, because it's quality ար to make delicious in this case always has its demand. Expensive ingredients, therefore also high value: Of course, if you buy a lot of ingredients: convenient for you then you will win twice as much."
+    }
+
+  },
   "FOOTER": {
     "CONTACT": "Contact",
     "EMAIL": "Email:"

@@ -12,9 +12,19 @@
     "ORDERBLOCK": {
       "FORINFORMATION": "FOR INFORMATION OR ORDER PLEASE CLICK ON LINKS BELOW",
       "CONTACTVIA": "Contact Via"
+
     },
     "ABOUTME": {
       "STORY": "About us"
+    }
+  },
+  "COURSES": {
+    "ABOUT_PRODUCT": {
+
+    },
+    "COURSE_CONTENT": {
+      "WHAT_INCLUDE_COURSE": "What does the course include?"
+
     }
   },
   "FOOTER": {

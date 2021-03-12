@@ -53,7 +53,7 @@
           fxLayoutGap="20px"
           *ngIf="!(isHandset$ | async)"
         >
-          <span class="login_part" (click)="openLoginModal()">
+          <span class="login_part" (click)="navigateByUrl('/authentication')">
             {{ 'HEADER.SIGN_IN' | translate }}</span
           >
           <span (click)="navigateByUrl('/courses')">

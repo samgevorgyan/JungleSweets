@@ -17,10 +17,18 @@
       @include for-size(sm) {
         width: 100%;
       }
+      .beginner {
+        background-image: url('../../../../assets/img/courses/who-is-for/beginner.svg');
+      }
+      .professional {
+        background-image: url('../../../../assets/img/courses/who-is-for/professional.svg');
+      }
+      .middle {
+        background-image: url('../../../../assets/img/courses/who-is-for/middle.svg');
+      }
       .who_is_image {
-        background-image: url('../../../../assets/img/courses/who-is-for/who_is1.svg');
         background-repeat: no-repeat;
-
+        background-size: contain;
         margin-bottom: 25px;
         width: 100px;
         height: 100px;
@@ -32,6 +40,7 @@
         font-size: 26px;
         line-height: 1.35;
         font-weight: 600;
+        height: 100px;
       }
       .who_is_text {
         font-size: 18px;

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoursesComponent } from './courses.component';
 import { RouterModule, Routes } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
 import { ShareModule } from '../../modules/share/share.module';
 import { AboutProductComponent } from './about-product/about-product.component';
 import { CourseContentComponent } from './course-content/course-content.component';
@@ -13,7 +12,14 @@ import { ForceBuyComponent } from './force-buy/force-buy.component';
 export const routes: Routes = [{ path: '', component: CoursesComponent }];
 
 @NgModule({
-  declarations: [CoursesComponent, AboutProductComponent, CourseContentComponent, WhoIsForComponent, EasyToEarnComponent, ForceBuyComponent],
+  declarations: [
+    CoursesComponent,
+    AboutProductComponent,
+    CourseContentComponent,
+    WhoIsForComponent,
+    EasyToEarnComponent,
+    ForceBuyComponent,
+  ],
   imports: [CommonModule, RouterModule.forChild(routes), ShareModule],
 })
 export class CoursesModule {}
