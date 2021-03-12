@@ -1,10 +1,11 @@
 <div class="force_buy_cont">
-  <div class="buy_now_button_div">
-    <span>Онлайн мастер-класс 30000 AMD</span>
+  <div
+    class="buy_now_button_div"
+    fxLayout="column"
+    fxLayoutAlign="space-between center"
+  >
+    <span>Онлайн мастер-класс <span class="sale">30000</span> 25000 AMD</span>
     <button class="buy_now_button">Buy now</button>
   </div>
-  <img
-    src="./assets/img/force-buy/shelf_wood.png"
-    alt="jungle sweets buy course "
-  />
+  <div *ngIf="showTimer">zaxchin mnacel e hethashvark {{ display }}</div>
 </div>

@@ -1,11 +1,40 @@
 @import '../../../../variable';
 .courses_about_product {
-  .courses_about_image {
-    background-image: url('../../../../assets/img/home/category-square/women_square_bg.jpg');
-    background-size: cover;
-    width: 200px;
-    height: 300px;
-  }
+  width: 100%;
+  background-image: url('../../../../assets/img/force-buy/force-buy.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 50px;
+
   .courses_about_text {
+    .macaron_virtual {
+      font-weight: 400;
+      font-style: normal;
+      font-size: 42px;
+      letter-spacing: 1px;
+      text-transform: none;
+      line-height: 1.5em;
+      color: #fff;
+    }
+    .macaron_master_class {
+      font-weight: 400;
+      font-style: normal;
+      font-size: 93px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      line-height: 1em;
+      color: #fff;
+      text-align: center;
+      margin: 20px 0 50px 0;
+      @include for-size(sm) {
+        font-size: 75px;
+      }
+      @include for-size(lt-sm) {
+        font-size: 45px;
+      }
+    }
+    .buy_now_button {
+      @include buy-button;
+    }
   }
 }

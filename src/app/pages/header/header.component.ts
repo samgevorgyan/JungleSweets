@@ -44,17 +44,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([urlToNavigate]);
   }
 
-  openLoginModal() {
-    // this.dialogService.openDialog(LoginDialogComponent, "650px");
-  }
-
   setSelectedLanguage(lang: string) {
     this.languageList.forEach((key) => {
-      if (key.name === lang) {
-        key.selected = true;
-      } else {
-        key.selected = false;
-      }
+      key.selected = key.name === lang;
     });
   }
 

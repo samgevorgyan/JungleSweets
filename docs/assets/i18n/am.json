@@ -13,9 +13,18 @@
     "ORDERBLOCK": {
       "FORINFORMATION": "Պատվիրելու կամ տեղեկատվություն ստանալու համար, սեղմեք ներքևի հղումներին",
       "CONTACTVIA": "Կապվել"
+
     },
     "ABOUTME": {
       "STORY": "Մեր մասին"
+    }
+  },
+  "COURSES": {
+    "ABOUT_PRODUCT": {
+
+    },
+    "COURSE_CONTENT": {
+      "WHAT_INCLUDE_COURSE": "Ի՞նչ է ներառում դասընթացը"
     }
   },
   "FOOTER": {

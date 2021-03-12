@@ -7,6 +7,26 @@ $default_radius: 38px;
 
 //mixins
 
+@mixin buy-button {
+  box-shadow: inset -2px -34px 17px -22px #ffdcb2;
+  background: linear-gradient(to bottom, #f0f0f0 5%, #e0b462 100%);
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  border: 1px solid #fafafa;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: bold;
+  padding: 20px 60px;
+  text-decoration: none;
+  text-shadow: -2px -1px 14px #c19d56;
+  &:hover {
+    background: linear-gradient(to bottom, #e0b462 5%, #f0f0f0 100%);
+    background-color: #e0b462;
+  }
+}
+
 @mixin for-size($range) {
   $s374: 374px;
   $s599: 599px;

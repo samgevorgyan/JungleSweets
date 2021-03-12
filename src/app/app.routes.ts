@@ -14,6 +14,13 @@ export const routes: Routes = [
       import('./pages/courses/courses.module').then((mod) => mod.CoursesModule),
   },
   {
+    path: 'authentication',
+    loadChildren: () =>
+      import('./pages/authentication/authentication.module').then(
+        (mod) => mod.AuthenticationModule
+      ),
+  },
+  {
     path: 'admin',
     loadChildren: () =>
       import('./pages/admin/admin.module').then((mod) => mod.AdminModule),
