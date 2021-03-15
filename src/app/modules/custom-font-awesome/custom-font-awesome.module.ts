@@ -21,6 +21,9 @@ import {
   faSnowman,
   faComment,
   faInfinity,
+  faEnvelope,
+  faLock,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -51,7 +54,10 @@ export class CustomFontAwesomeModule {
       faPepperHot,
       faSnowman,
       faComment,
-      faInfinity
+      faInfinity,
+      faEnvelope,
+      faLock,
+      faUser
     );
   }
 }

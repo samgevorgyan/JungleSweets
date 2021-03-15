@@ -13,7 +13,7 @@
       text-decoration: underline;
     }
     .buy_now_button {
-      @include buy-button;
+      @include standard-button;
     }
   }
   img {

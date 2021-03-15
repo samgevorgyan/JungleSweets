@@ -1,8 +1,7 @@
 {
   "HEADER": {
     "LANGUAGE_SHOW": "En",
-    "SIGN_IN": "Sign in",
-    "SIGN_UP": "Sign up",
+
     "COURSES": "Courses"
   },
   "HOME": {
@@ -23,13 +22,22 @@
     },
     "COURSE_CONTENT": {
       "WHAT_INCLUDE_COURSE": "What does the course include?",
-      "VIDEO": "Preparation video",
-      "RECIPE": "Recipe",
-      "FILLINGS": "Fillings",
-      "CUTTINGS": "cuttings",
-      "FEEDBACK": "Contact us for 3 months",
-      "UNLIMITED": "Unlimited access",
-      "DRAW_PRESENT:": "How to draw and present correctly?"
+      "VIDEO_TITLE": "Preparation video",
+      "VIDEO_TEXT": "Video made by Italian meringue based on sugar using a small amount, preparing the base kernel.",
+      "RECIPE_TITLE": "Recipe",
+      "RECIPE_TEXT": "Detailed description of the recipe, necessary ingredients and list of ingredients, chocolate pasta recipe, right hand mixer work equipment.",
+      "FILLINGS_TITLE": "Fillings",
+      "FILLINGS_TEXT": "Nucleus recipe, detailed description և correct approach storage methods.",
+      "CUTTINGS_TITLE": "cuttings",
+      "CUTTINGS_TEXT": "Stencils A3 size, not only circular.",
+      "FEEDBACK_TITLE": "Contact us for 3 months",
+      "FEEDBACK_TEXT": "Contact me for 3 months, bug fixes at home after work:",
+      "UNLIMITED_TITLE": "Unlimited access",
+      "UNLIMITED_TEXT": "Unlimited access to materials.",
+      "DRAW_PRESENT_TITLE": "How to draw and present correctly?",
+      "DRAW_PRESENT_TEXT": "How to properly draw and present a dessert that is lacking in our reality? It is not possible, because the customer is the first to be attracted by the appearance, which should be conveyed as accurately as possible through the picture.",
+      "BONUS_RECIPE_TITLE": "Bonus recipe",
+      "BONUS_RECIPE_TEXT": "A bonus recipe that will definitely not leave you indifferent - Cheesecake New York."
 
     },
     "WHO_IS_FOR": {
@@ -53,6 +61,16 @@
     }
 
   },
+  "AUTHENTICATION": {
+    "ERRORS": {
+      "EMAIL_REQUIRED": "The email is required",
+      "EMAIL_INVALID": "Invalid email",
+      "PASSWORD_REQUIRED": "The password id required",
+      "PASSWORD_INVALID": "The password must have at least 6 character",
+      "DO_NOT_HAVE_ACCOUNT": "Still do not have an account?",
+      "ALREADY_HAVE_ACCOUNT": "Already have an account?"
+    }
+  },
   "FOOTER": {
     "CONTACT": "Contact",
     "EMAIL": "Email:"
@@ -61,6 +79,12 @@
     "SEEMORE": "See more",
     "SEELESS": "See less",
     "READMORE": "Read more",
-    "READLESS": "Read less"
+    "READLESS": "Read less",
+    "PASSWORD": "Password",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "SIGN_IN": "Sign in",
+    "SIGN_UP": "Sign up"
   }
+
 }

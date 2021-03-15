@@ -1,0 +1,21 @@
+@import '../../../variable';
+
+.auth_cont {
+  height: calc(100vh - 371px);
+  background-color: white;
+  margin: auto;
+
+  width: 1280px;
+  @include for-size(lgm) {
+    width: 1200px;
+  }
+  @include for-size(md) {
+    width: 900px;
+  }
+  @include for-size(sm) {
+    width: 583px;
+  }
+  @include for-size(lt-sm) {
+    width: 100%;
+  }
+}
