@@ -1,31 +1,13 @@
 // $header_background_color: #4e645e;
 $header_background_color: #1d6141;
 $main_gold_color: #c19d56;
+$main_error_color: #f00;
+
 //size
 $default_height: 45px;
 $default_radius: 38px;
 
 //mixins
-
-@mixin buy-button {
-  box-shadow: inset -2px -34px 17px -22px #ffdcb2;
-  background: linear-gradient(to bottom, #f0f0f0 5%, #e0b462 100%);
-  background-color: #f0f0f0;
-  border-radius: 6px;
-  border: 1px solid #fafafa;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 23px;
-  font-weight: bold;
-  padding: 20px 60px;
-  text-decoration: none;
-  text-shadow: -2px -1px 14px #c19d56;
-  &:hover {
-    background: linear-gradient(to bottom, #e0b462 5%, #f0f0f0 100%);
-    background-color: #e0b462;
-  }
-}
 
 @mixin for-size($range) {
   $s374: 374px;
@@ -102,29 +84,21 @@ $default_radius: 38px;
 
 // custom element design
 
-@mixin standard_button {
-  background-color: $main_blue_color;
-  border: 1px solid $main_blue_color;
-  color: #fff;
+@mixin standard-button {
+  box-shadow: inset -2px -34px 17px -22px #ffdcb2;
+  background: #f0f0f0 linear-gradient(to bottom, #f0f0f0 5%, #e0b462 100%);
+  border-radius: 6px;
+  border: 1px solid #fafafa;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: bold;
+  padding: 20px 60px;
+  text-decoration: none;
+  text-shadow: -2px -1px 14px #c19d56;
   &:hover {
-    background-color: $button_hover_background;
-    border: 1px solid $button_hover_border;
-    transition: all 0.3s ease;
-    color: #fff;
-  }
-  &:active {
-    color: #fff;
-    background-color: #0062cc;
-    border-color: #005cbf;
-  }
-  &:focus {
-    color: #fff;
-  }
-  @include for-size(lt-md) {
-    width: 300px;
-  }
-  @include for-size(xs) {
-    width: 250px;
+    background: #e0b462 linear-gradient(to bottom, #e0b462 5%, #f0f0f0 100%);
   }
 }
 
@@ -173,15 +147,23 @@ $default_radius: 38px;
 }
 
 @mixin default_inputs {
-  height: $default_height;
-  border-radius: $default_radius;
-  border: 1px solid #cccccc;
-  outline: none;
-  padding: 3px 10px;
+  position: relative;
   width: 100%;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  margin: 0 0 13px;
+  padding: 10px 26px;
+  font-family: Cormorant, serif;
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+  color: #000;
+  border: 1px solid #e3e3e3;
   box-sizing: border-box;
+  -webkit-transition: border-color 0.2s ease-in-out;
+  -moz-transition: border-color 0.2s ease-in-out;
+  transition: border-color 0.2s ease-in-out;
+  &:focus {
+    border-color: $main_gold_color;
+  }
   @include for-size(lt-md) {
     width: 300px;
   }
