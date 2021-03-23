@@ -1,74 +1,82 @@
-<div class="sing_in_main">
-  <div class="sing_in_main_form_div">
-    <form
-      [formGroup]="signInForm"
-      (ngSubmit)="authenticate()"
-      fxLayout="column"
-      fxLayoutAlign="center start"
-    >
-      <div *ngIf="!isSignIn">
-        <fa-icon icon="user"></fa-icon>
+<div class="auth_cont" fxLayout="column" fxLayoutAlign="center center">
+  <div class="sing_in_main">
+    <div class="sing_in_main_form_div">
+      <form
+        [formGroup]="signInForm"
+        (ngSubmit)="authenticate()"
+        fxLayout="column"
+        fxLayoutAlign="center start"
+      >
+        <fa-icon *ngIf="!isSignIn" icon="user"></fa-icon>
 
         <input
+          *ngIf="!isSignIn"
           type="text"
           formControlName="firstName"
           [placeholder]="'COMMON.FIRST_NAME' | translate"
         />
 
-        <fa-icon icon="user"></fa-icon>
+        <fa-icon *ngIf="!isSignIn" icon="user"></fa-icon>
 
         <input
+          *ngIf="!isSignIn"
           type="text"
           formControlName="lastName"
           [placeholder]="'COMMON.LAST_NAME' | translate"
         />
-      </div>
 
-      <fa-icon icon="envelope"></fa-icon>
+        <fa-icon icon="envelope"></fa-icon>
 
-      <input
-        type="text"
-        formControlName="email"
-        [placeholder]="'FOOTER.EMAIL' | translate"
-      />
-      <fa-icon icon="lock"></fa-icon>
-      <input
-        type="text"
-        formControlName="password"
-        [placeholder]="'COMMON.PASSWORD' | translate"
-      />
+        <input
+          type="text"
+          formControlName="email"
+          [placeholder]="'FOOTER.EMAIL' | translate"
+        />
+        <fa-icon icon="lock"></fa-icon>
+        <input
+          type="text"
+          formControlName="password"
+          [placeholder]="'COMMON.PASSWORD' | translate"
+        />
 
-      <div class="error_div">
-        <span *ngIf="isEmailRequired">{{
-          'AUTHENTICATION.ERRORS.EMAIL_REQUIRED' | translate
-        }}</span>
-        <span *ngIf="isEmailInvalid">{{
-          'AUTHENTICATION.ERRORS.EMAIL_INVALID' | translate
-        }}</span>
-        <span *ngIf="isPasswordRequired">{{
-          'AUTHENTICATION.ERRORS.PASSWORD_REQUIRED' | translate
-        }}</span>
-        <span *ngIf="isPasswordInvalid">
-          {{ 'AUTHENTICATION.ERRORS.PASSWORD_INVALID' | translate }}</span
+        <div class="error_div">
+          <span *ngIf="isEmailRequired">{{
+            'AUTHENTICATION.ERRORS.EMAIL_REQUIRED' | translate
+          }}</span>
+          <span *ngIf="isEmailInvalid">{{
+            'AUTHENTICATION.ERRORS.EMAIL_INVALID' | translate
+          }}</span>
+          <span *ngIf="isPasswordRequired">{{
+            'AUTHENTICATION.ERRORS.PASSWORD_REQUIRED' | translate
+          }}</span>
+          <span *ngIf="isPasswordInvalid">
+            {{ 'AUTHENTICATION.ERRORS.PASSWORD_INVALID' | translate }}</span
+          >
+        </div>
+        <button *ngIf="isSignIn">
+          {{ 'COMMON.SIGN_IN' | translate }}
+        </button>
+        <button *ngIf="!isSignIn">
+          {{ 'COMMON.SIGN_UP' | translate }}
+        </button>
+      </form>
+
+      <div class="helper_text" *ngIf="isSignIn">
+        {{ 'AUTHENTICATION.ERRORS.DO_NOT_HAVE_ACCOUNT' | translate }}
+        <span (click)="isSignIn = false">
+          {{ 'COMMON.SIGN_UP' | translate }}</span
         >
       </div>
-      <button *ngIf="isSignIn">
-        {{ 'COMMON.SIGN_IN' | translate }}
-      </button>
-      <button *ngIf="!isSignIn">
-        {{ 'COMMON.SIGN_UP' | translate }}
-      </button>
-    </form>
+      <div class="helper_text" *ngIf="!isSignIn">
+        {{ 'AUTHENTICATION.ERRORS.ALREADY_HAVE_ACCOUNT' | translate }}
+        <span (click)="isSignIn = true">{{
+          'COMMON.SIGN_IN' | translate
+        }}</span>
+      </div>
 
-    <div class="helper_text" *ngIf="isSignIn">
-      {{'AUTHENTICATION.ERRORS.DO_NOT_HAVE_ACCOUNT' | translate}}
-      <span (click)="isSignIn = false">
-        {{ 'COMMON.SIGN_UP' | translate }}</span
-      >
-    </div>
-    <div class="helper_text" *ngIf="!isSignIn">
-      {{'AUTHENTICATION.ERRORS.ALREADY_HAVE_ACCOUNT' | translate}}
-      <span (click)="isSignIn = true">{{ 'COMMON.SIGN_IN' | translate }}</span>
+      <div class="forgot_password" (click)="restorePassword()">
+        {{ 'AUTHENTICATION.VERIFICATION.FORGOT_PASSWORD' | translate }}
+      </div>
     </div>
   </div>
 </div>

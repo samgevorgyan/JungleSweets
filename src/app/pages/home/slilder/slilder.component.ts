@@ -1,4 +1,3 @@
-import { Subject } from 'rxjs';
 import {
   Component,
   Inject,
@@ -6,17 +5,16 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
-
-import { Observable } from 'rxjs';
-import { tap, shareReplay, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { FbDatabasePathsPaths } from '../../../enums/fbDatabasePaths';
-import { Slider } from '../../../models/slider.interface';
+
 export interface Item {
   url: string;
 }
+
 @Component({
   selector: 'jungle-slilder',
   templateUrl: './slilder.component.html',
@@ -26,6 +24,7 @@ export class SlilderComponent implements OnInit {
   @ViewChild('nav') slider: NgImageSliderComponent;
   isBrowser = false;
   imageObject: Array<{ thumbImage: string; alt: string }> = [];
+
   constructor(
     private afs: AngularFirestore,
     @Inject(PLATFORM_ID) private platformId: object
@@ -61,7 +60,6 @@ export class SlilderComponent implements OnInit {
       )
       .subscribe((res: any) => {
         res[0].urls.forEach((item) => {
-          console.log('res', res);
           this.imageObject.push({
             thumbImage: item,
             alt: item,

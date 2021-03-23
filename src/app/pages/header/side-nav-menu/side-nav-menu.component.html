@@ -29,8 +29,29 @@
     </div>
   </div>
 
-  <div class="courses" (click)="navigateByUrl('/courses')">
+  <div
+    class="courses"
+    (click)="navigateByUrl('/courses')"
+    *ngIf="!(isLoggedIn$ | async)"
+  >
     {{ 'HEADER.COURSES' | translate }}
   </div>
-  <div class="sign_up">{{ 'HEADER.SIGN_UP' | translate }}</div>
+  <div
+    class="sign_in"
+    (click)="navigateByUrl('/authentication')"
+    *ngIf="!(isLoggedIn$ | async)"
+  >
+    {{ 'COMMON.SIGN_IN' | translate }}
+  </div>
+
+  <div
+    class="login_part"
+    (click)="navigateByUrl('/master-class')"
+    *ngIf="isLoggedIn$ | async"
+  >
+    {{ 'MASTER_CLASS.MASTER_CLASS_TITLE' | translate }}
+  </div>
+  <div class="login_part" (click)="signOut()" *ngIf="isLoggedIn$ | async">
+    {{ 'COMMON.SIGN_OUT' | translate }}
+  </div>
 </div>

@@ -1,0 +1,43 @@
+@import '../../../../variable';
+
+.auth_cont {
+  height: calc(100vh - 371px);
+  background-color: white;
+  margin: auto;
+
+  width: 1280px;
+  @include for-size(lgm) {
+    width: 1200px;
+  }
+  @include for-size(md) {
+    width: 900px;
+  }
+  @include for-size(sm) {
+    width: 583px;
+  }
+  @include for-size(lt-sm) {
+    width: 100%;
+  }
+
+  .verification_main {
+    background-color: white;
+    padding: 30px;
+    @include card_shadow;
+    width: 320px;
+
+    .error_div {
+      color: $main_error_color;
+      min-height: 50px;
+      text-align: center;
+      width: 100%;
+      span {
+        width: 100%;
+      }
+    }
+
+    button {
+    }
+    .message_dive {
+    }
+  }
+}

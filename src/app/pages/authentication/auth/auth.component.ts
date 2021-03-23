@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { User } from '../user.interface';
 
 @Component({
   selector: 'jungle-auth',
@@ -14,26 +16,32 @@ export class AuthComponent implements OnInit {
   isSignIn = true;
   signInForm = this.fb.group({
     email: [
-      '',
+      'samvelgevorgyan87@gmail.com',
       [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ],
     ],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['asdasdsad', [Validators.required, Validators.minLength(6)]],
     firstName: [''],
     lastName: [''],
   });
 
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
+
+  ngOnInit(): void {}
   get email() {
     return this.signInForm.get('email');
   }
   get password() {
     return this.signInForm.get('password');
   }
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {}
+  get firstName() {
+    return this.signInForm.get('firstName');
+  }
+  get lastName() {
+    return this.signInForm.get('lastName');
+  }
   validation(): boolean {
     if (this.email.errors) {
       if (this.email.errors.required) {
@@ -69,9 +77,27 @@ export class AuthComponent implements OnInit {
     if (this.validation()) {
       if (this.isSignIn) {
         // sign in
+        this.authService.signIn(this.email.value, this.password.value);
       } else {
         // sign up
+        const userInfo: User = {
+          email: this.email.value,
+          emailVerified: false,
+          firstName: this.firstName.value,
+          lastName: this.lastName.value,
+          password: this.password.value.trim(),
+          uid: '',
+        };
+        this.authService.signUp(userInfo).then((resultcomp) => {
+          console.log('result arden componentum', resultcomp);
+        });
       }
+    }
+  }
+
+  restorePassword() {
+    if (this.email.value) {
+      this.authService.forgotPassword(this.email.value.trim());
     }
   }
 }

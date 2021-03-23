@@ -63,11 +63,25 @@
     "ERRORS": {
       "EMAIL_REQUIRED": "Էլ․ հասցեն պարտադիր է",
       "EMAIL_INVALID": "Սխալ էլ․ հասցե",
+      "EMAIL_EXIST": "Տվյալ էլ․ հասցեն արդեն գրանցված է",
       "PASSWORD_REQUIRED": "Գաղտնաբառը պարտադիր է",
       "PASSWORD_INVALID": "Գաղտնաբառը պետք է ունենա ամենաքիչը 6 նիշ",
+      "WRONG_PASSWORD": "Գաղտնաբառը սխալ է",
       "DO_NOT_HAVE_ACCOUNT": "Դեռևս չունե՞ք հաշիվ",
-      "ALREADY_HAVE_ACCOUNT": "Արդեն ունե՞ք հաշիվ"
+      "ALREADY_HAVE_ACCOUNT": "Արդեն ունե՞ք հաշիվ",
+      "UNREGISTERED_EMAIL": "Նման էլ․ հասցե գոյություն չունի"
+    },
+    "VERIFICATION": {
+      "ERRORS": {
+        "MALFORMED": "Լրացել է վավերացման ծածկագրի ժամկետը, կամ այն արդեն օգտագործվել է",
+        "RESEND_CODE_TEXT": "Վավերացման ծածկագիրը կրկիին ստանալու համար, խնդրում ենք",
+        "VERIFICATION_SUCCESS": "Ձեր էլ․ հասեցն հաջողությամբ վավերացված է"
+      },
+      "FORGOT_PASSWORD": "Մոռացե՞լ եք գաղտնաբառը"
     }
+  },
+  "MASTER_CLASS": {
+    "MASTER_CLASS_TITLE": "Վարպետության դաս"
   },
   "FOOTER": {
     "CONTACT": "Կապ",
@@ -82,6 +96,9 @@
     "FIRST_NAME": "Անուն",
     "LAST_NAME": "Ազգանուն",
     "SIGN_IN": "Մուտք",
-    "SIGN_UP": "Գրանցվել"
+    "SIGN_OUT": "Դուրս գալ",
+    "SIGN_UP": "Գրանցվել",
+    "CLICK_HERE": "Սեղմել այստեղ",
+    "CLOSE": "Փակել"
   }
 }

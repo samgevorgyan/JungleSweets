@@ -1,7 +1,5 @@
-@import '../../../variable';
-
-.auth_cont {
-  height: calc(100vh - 371px);
+@import '../../../variable.scss';
+.master_class_main_container {
   background-color: white;
   margin: auto;
 
@@ -13,7 +11,7 @@
     width: 900px;
   }
   @include for-size(sm) {
-    width: 583px;
+    width: 600px;
   }
   @include for-size(lt-sm) {
     width: 100%;

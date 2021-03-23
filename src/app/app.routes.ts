@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AdminLoginGuard } from './pages/admin/guards/login.guard';
+import { LoginGuard } from './pages/authentication/login-guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -19,6 +20,14 @@ export const routes: Routes = [
       import('./pages/authentication/authentication.module').then(
         (mod) => mod.AuthenticationModule
       ),
+  },
+  {
+    path: 'master-class',
+    loadChildren: () =>
+      import('./pages/master-class/master-class.module').then(
+        (mod) => mod.MasterClassModule
+      ),
+    canLoad: [LoginGuard],
   },
   {
     path: 'admin',
