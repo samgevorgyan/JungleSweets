@@ -53,10 +53,31 @@
           fxLayoutGap="20px"
           *ngIf="!(isHandset$ | async)"
         >
-          <span class="login_part" (click)="navigateByUrl('/authentication')">
+          <span
+            class="login_part"
+            (click)="navigateByUrl('/authentication')"
+            *ngIf="!(isLoggedIn$ | async)"
+          >
             {{ 'COMMON.SIGN_IN' | translate }}</span
           >
-          <span (click)="navigateByUrl('/courses')">
+          <span
+            class="login_part"
+            (click)="signOut()"
+            *ngIf="isLoggedIn$ | async"
+          >
+            {{ 'COMMON.SIGN_OUT' | translate }}</span
+          >
+          <span
+            class="login_part"
+            (click)="navigateByUrl('/master-class')"
+            *ngIf="isLoggedIn$ | async"
+          >
+            {{ 'MASTER_CLASS.MASTER_CLASS_TITLE' | translate }}</span
+          >
+          <span
+            (click)="navigateByUrl('/courses')"
+            *ngIf="!(isLoggedIn$ | async)"
+          >
             {{ 'HEADER.COURSES' | translate }}</span
           >
           <div

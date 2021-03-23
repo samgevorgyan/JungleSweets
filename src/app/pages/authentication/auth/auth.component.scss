@@ -1,33 +1,58 @@
 @import '../../../../variable';
-
-.sing_in_main {
+.auth_cont {
+  height: calc(100vh - 371px);
   background-color: white;
-  padding: 30px;
-  @include card_shadow;
-  width: 320px;
-  .sing_in_main_form_div {
-    .error_div {
-      color: $main_error_color;
-      min-height: 50px;
-      text-align: center;
-      width: 100%;
-      span {
+  margin: auto;
+
+  width: 1280px;
+  @include for-size(lgm) {
+    width: 1200px;
+  }
+  @include for-size(md) {
+    width: 900px;
+  }
+  @include for-size(sm) {
+    width: 583px;
+  }
+  @include for-size(lt-sm) {
+    width: 100%;
+  }
+
+  .sing_in_main {
+    background-color: white;
+    padding: 30px;
+    @include card_shadow;
+    width: 320px;
+    .sing_in_main_form_div {
+      .error_div {
+        color: $main_error_color;
+        min-height: 50px;
+        text-align: center;
+        width: 100%;
+        span {
+          width: 100%;
+        }
+      }
+      input {
+        @include default_inputs;
+      }
+      button {
+        @include standard-button;
         width: 100%;
       }
     }
-    input {
-      @include default_inputs;
+    .helper_text {
+      text-align: center;
+      span {
+        color: $main_gold_color;
+        font-weight: 600;
+        cursor: pointer;
+      }
     }
-    button {
-      @include standard-button;
-      width: 100%;
-    }
-  }
-  .helper_text {
-    text-align: center;
-    span {
+    .forgot_password {
       color: $main_gold_color;
-      font-weight: 600;
+      text-align: center;
+      margin-top: 20px;
       cursor: pointer;
     }
   }

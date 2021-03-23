@@ -30,8 +30,7 @@ export class AssortmentComponent implements OnInit {
       this.assortmentsArray = [];
       res.forEach((item) => {
         const imageToShow = item.urls.find((image) => image.main === true);
-        console.log('item.urls[0]', item.urls[0]);
-        console.log('imageToShow', imageToShow);
+
         this.assortmentsArray.push({
           imageToShow: imageToShow ? imageToShow.url : item.urls[0].url,
           amTitle: item.title.am,

@@ -102,3 +102,13 @@ input[type='file'] {
     border-radius: 10px;
   }
 }
+.error-alert-snackbar {
+  color: $main_error_color;
+  background-color: white;
+  font-family: Cormorant-regular, sans-serif;
+}
+.success-alert-snackbar {
+  color: $main_gold_color;
+  background-color: white;
+  font-family: Cormorant-regular, sans-serif;
+}

@@ -65,11 +65,27 @@
     "ERRORS": {
       "EMAIL_REQUIRED": "The email is required",
       "EMAIL_INVALID": "Invalid email",
+      "EMAIL_EXIST": "The email already exist",
       "PASSWORD_REQUIRED": "The password id required",
       "PASSWORD_INVALID": "The password must have at least 6 character",
+      "WRONG_PASSWORD": "The password is wrong",
       "DO_NOT_HAVE_ACCOUNT": "Still do not have an account?",
-      "ALREADY_HAVE_ACCOUNT": "Already have an account?"
+      "ALREADY_HAVE_ACCOUNT": "Already have an account?",
+      "UNREGISTERED_EMAIL": "There is no user record corresponding to this identifier"
+    },
+    "VERIFICATION": {
+      "ERRORS": {
+        "MALFORMED": "The verification code is  expired, or has already been used",
+        "RESEND_CODE_TEXT": "In order to resend the verification code, please",
+        "VERIFICATION_SUCCESS": "Your email has been verified successfully"
+      },
+      "FORGOT_PASSWORD": "Forgot password?"
     }
+  },
+
+
+  "MASTER_CLASS": {
+      "MASTER_CLASS_TITLE": "Masterclass"
   },
   "FOOTER": {
     "CONTACT": "Contact",
@@ -84,7 +100,12 @@
     "FIRST_NAME": "First name",
     "LAST_NAME": "Last name",
     "SIGN_IN": "Sign in",
-    "SIGN_UP": "Sign up"
+    "SIGN_OUT": "Sign out",
+    "SIGN_UP": "Sign up",
+    "CLICK_HERE": "Click here",
+    "CLOSE": "Close"
+
+
   }
 
 }
