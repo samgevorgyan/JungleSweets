@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{jTqx:function(n,s,t){"use strict";t.d(s,"a",function(){return e});var e=function(n){return n.aboutMe="about-me",n.assortments="assortments",n.sliderImg="slider-img",n}({})}}]);
