@@ -1,18 +1,48 @@
 <div class="auth_cont" fxLayout="column" fxLayoutAlign="center center">
-  <div class="verification_main">
-    <div class="message_dive"></div>
+  <div class="verification_main" *ngIf="!isPassword">
+    <div class="message_dive" *ngIf="resendEmail">
+      <span
+        [innerHTML]="
+          'AUTHENTICATION.VERIFICATION.VERIFICATION_INFO'
+            | translate: { value: this.userEmail }
+        "
+      >
+      </span>
+    </div>
     <div class="error_div">
       <span *ngIf="malformed"
         >{{ 'AUTHENTICATION.VERIFICATION.ERRORS.MALFORMED' | translate }}
         <p>
-          {{
-            'AUTHENTICATION.VERIFICATION.ERRORS.RESEND_CODE_TEXT' | translate
-          }}
+          {{ 'AUTHENTICATION.VERIFICATION.RESEND_CODE_TEXT' | translate }}
           <button mat-button color="primary" (click)="reSendEmailVerify()">
             {{ 'COMMON.CLICK_HERE' | translate }}
           </button>
         </p>
       </span>
+    </div>
+  </div>
+
+  <div class="verification_main" *ngIf="isPassword">
+    <input
+      class="reset_password_input"
+      ngModel
+      #password="ngModel"
+      (focus)="passwordLengthError = false"
+      type="text"
+      [placeholder]="'AUTHENTICATION.VERIFICATION.NEW_PASSWORD' | translate"
+    />
+    <button
+      class="submit_button"
+      mat-raised-button
+      color="primary"
+      (click)="resetPassword(password.value)"
+    >
+      {{ 'COMMON.SUBMIT' | translate }}
+    </button>
+    <div class="error_div">
+      <span *ngIf="passwordLengthError">{{
+        'AUTHENTICATION.ERRORS.PASSWORD_INVALID' | translate
+      }}</span>
     </div>
   </div>
 </div>

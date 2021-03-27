@@ -35,6 +35,7 @@ $jungle-sweets-theme: mat-light-theme(
   margin: 0;
   padding: 0;
   outline: none;
+  box-sizing: border-box;
 }
 @font-face {
   font-family: Cormorant-italic;
@@ -55,9 +56,9 @@ $jungle-sweets-theme: mat-light-theme(
 html,
 body {
   height: 100%;
-  background-image: url('assets/img/home/backgrond.png');
 }
 body {
+  background-image: url('assets/img/home/backgrond.png');
   font-family: Cormorant-italic;
   font-size: 21px;
   font-weight: 400;

@@ -9,7 +9,7 @@
       [mode]="'over'"
     >
       <mat-nav-list>
-        <side-nav-menu> </side-nav-menu>
+        <side-nav-menu (closeDrawer)="drawer.toggle()"> </side-nav-menu>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

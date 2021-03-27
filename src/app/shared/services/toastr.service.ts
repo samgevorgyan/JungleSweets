@@ -11,24 +11,24 @@ export class ToastrService {
     private translate: TranslateService
   ) {}
 
-  async success(message) {
+  async success(message, duration = 3000) {
     await this._snackBar.open(
       this.translate.instant(message),
       this.translate.instant('COMMON.CLOSE'),
       {
-        duration: 3000,
+        duration,
         horizontalPosition: 'start',
         verticalPosition: 'top',
         panelClass: 'success-alert-snackbar',
       }
     );
   }
-  async error(message) {
+  async error(message, duration = 3000) {
     await this._snackBar.open(
       this.translate.instant(message),
       this.translate.instant('COMMON.CLOSE'),
       {
-        duration: 3000,
+        duration,
         horizontalPosition: 'start',
         verticalPosition: 'top',
         panelClass: 'error-alert-snackbar',

@@ -50,7 +50,7 @@
     "ng-image-slider": "^2.6.4",
     "ngx-order-pipe": "^2.1.1",
     "npm-check-updates": "^11.2.1",
-    "rxjs": "^6.6.6",
+    "rxjs": "^7.0.0-beta.4",
     "svg4everybody": "^2.1.9",
     "tslib": "^2.1.0",
     "zone.js": "^0.11.4"

@@ -5,7 +5,9 @@ import {
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
+  EventEmitter,
 } from '@angular/core';
 import { languageList } from 'src/app/utils/language.list';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,6 +24,7 @@ import { User } from '../../authentication/user.interface';
 })
 export class SideNavMenuComponent implements OnInit {
   @Input() user;
+  @Output() closeDrawer = new EventEmitter();
   languageFromUrl$ = this.languageService.languageFromUrl$;
   user$: Observable<any>;
 
@@ -46,6 +49,7 @@ export class SideNavMenuComponent implements OnInit {
   navigateByUrl(url) {
     const urlToNavigate: any = this.localize.translateRoute(url);
     this.router.navigate([urlToNavigate]);
+    this.closeDrawer.emit();
   }
   changeLanguage(lang: string) {
     this.showLanguageList = !this.showLanguageList;
