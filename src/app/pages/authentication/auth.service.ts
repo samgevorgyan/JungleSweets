@@ -7,12 +7,13 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { User } from './user.interface';
-import { first, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { first, take, tap } from 'rxjs/operators';
+import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from '../../shared/services/toastr.service';
+import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
 
 @Injectable({
   providedIn: 'root',
@@ -20,49 +21,89 @@ import { ToastrService } from '../../shared/services/toastr.service';
 export class AuthService {
   params: any;
   emailVerified: boolean;
+  user: User;
   constructor(
     public afAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone,
     public afs: AngularFirestore,
-    private activatedRoute: ActivatedRoute,
+
     private localize: LocalizeRouterService,
     private toast: ToastrService
   ) {
-    this.isLoggedIn().subscribe((res) => {
-      if (res) {
-        this.emailVerified = res.emailVerified;
-      }
-    });
-
-    this.activatedRoute.queryParams.subscribe((params) => {
-      if (params.oobCode) {
-        console.log('arams.oobCode', params);
-        this.params = params;
+    this.isLoggedIn().subscribe((user) => {
+      this.user = user;
+      if (user) {
+        console.log('user', user);
+        this.emailVerified = user.emailVerified;
+      } else {
+        this.emailVerified = false;
       }
     });
   }
 
-  verifyCode() {
-    if (!this.params.oobCode) {
-      return;
-    }
-    return this.afAuth
-      .checkActionCode(this.params.oobCode)
-      .then((res) => {
-        if (res.operation && res.operation.includes('VERIFY_EMAIL')) {
-          return this.afAuth
-            .applyActionCode(this.params.oobCode)
-            .then(() => {
-              return true;
-            })
-            .catch((error) => {
-              console.log('err from apply action code', error);
-              return error;
+  async verifyEmail(oobCode: string) {
+    await firstValueFrom(this.isLoggedIn());
+
+    if (this.user && !this.emailVerified) {
+      return this.afAuth
+        .checkActionCode(oobCode)
+        .then((res) => {
+          if (res.operation && res.operation.includes('VERIFY_EMAIL')) {
+            this.afAuth.applyActionCode(oobCode).then(() => {
+              this.toast
+                .success(
+                  'AUTHENTICATION.VERIFICATION.SUCCESS.VERIFICATION_SUCCESS'
+                )
+                .then(() => {
+                  const urlToNavigate: any = this.localize.translateRoute(
+                    '/authentication'
+                  );
+                  this.router.navigate([urlToNavigate]);
+                });
             });
-        }
+          }
+        })
+        .catch((error) => {
+          return error;
+        });
+    } else {
+      const urlToNavigate: any = this.localize.translateRoute(
+        '/authentication'
+      );
+      this.router.navigate([urlToNavigate]);
+      if (this.user) {
+        this.toast.success(
+          'AUTHENTICATION.VERIFICATION.SUCCESS.VERIFICATION_SUCCESS_ALREADY',
+          4000
+        );
+      } else {
+        this.toast.error(
+          'AUTHENTICATION.VERIFICATION.ERRORS.SING_IN_FOR_VERIFICATION',
+          4000
+        );
+      }
+    }
+  }
+  resetPassword(oobCode: string, newPassword: string) {
+    return this.afAuth
+      .confirmPasswordReset(oobCode, newPassword)
+      .then(() => {
+        const urlToNavigate: any = this.localize.translateRoute(
+          '/authentication'
+        );
+        this.router.navigate([urlToNavigate]);
+        this.toast.success(
+          'AUTHENTICATION.VERIFICATION.SUCCESS.VERIFICATION_SUCCESS_PASSWORD'
+        );
+        return true;
       })
       .catch((error) => {
+        if (error.message && error.message.includes('expired')) {
+          this.toast.error(
+            'AUTHENTICATION.VERIFICATION.ERRORS.RESET_PASSWORD_CODE_EXPIRED'
+          );
+        }
         return error;
       });
   }
@@ -113,10 +154,15 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(userInfo.email, userInfo.password)
       .then((result) => {
-        this.sendVerificationMail(result.user);
         userInfo.uid = result.user.uid;
         userInfo.emailVerified = result.user.emailVerified;
         this.SetUserData(userInfo);
+        this.sendVerificationMail(result.user).then((res) => {
+          const urlToNavigate: any = this.localize.translateRoute(
+            '/master-class'
+          );
+          this.router.navigate([urlToNavigate]);
+        });
       })
       .catch((error) => {
         if (error.message && error.message.includes('in use')) {
@@ -147,24 +193,27 @@ export class AuthService {
 
   // Send email verification when new user sign up
   sendVerificationMail(user) {
-    user
-      .sendEmailVerification()
-      .then((res) => {
-        const urlToNavigate: any = this.localize.translateRoute(
-          '/master-class'
-        );
-        this.router.navigate([urlToNavigate]);
-      })
-      .catch((error) => {
-        console.log('error from send email veirfy', error);
-      });
+    return user.sendEmailVerification();
   }
+  // Resend email verification link
+  reSendVerificationMail(user) {
+    return user.sendEmailVerification().then((res) => {
+      this.toast.success(
+        'AUTHENTICATION.VERIFICATION.SUCCESS.RESEND_CODE_SUCCESS',
+        5000
+      );
+    });
+  }
+
   // Reset Forggot password
   forgotPassword(passwordResetEmail) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
+        this.toast.success(
+          'AUTHENTICATION.VERIFICATION.SUCCESS.FORGOT_PASSWORD_LINK_SEND',
+          5000
+        );
       })
       .catch((error) => {
         window.alert(error);

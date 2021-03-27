@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import { observable, Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { Router } from '@angular/router';
 import { AuthService } from '../authentication/auth.service';
 import { User } from '../authentication/user.interface';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'main-header',

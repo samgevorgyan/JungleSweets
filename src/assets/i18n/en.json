@@ -38,7 +38,6 @@
       "DRAW_PRESENT_TEXT": "How to properly draw and present a dessert that is lacking in our reality? It is not possible, because the customer is the first to be attracted by the appearance, which should be conveyed as accurately as possible through the picture.",
       "BONUS_RECIPE_TITLE": "Bonus recipe",
       "BONUS_RECIPE_TEXT": "A bonus recipe that will definitely not leave you indifferent - Cheesecake New York."
-
     },
     "WHO_IS_FOR": {
       "FOR_WHO_IS_COURSE": "Who is the course for?",
@@ -48,7 +47,6 @@
       "FOR_WHO_IS_COURSE_PROFESSIONAL_TEXT": "If you have skills in confectionery, it would be great to add it. One's. Macaroni will allow you to develop your mind: to have your own unique style in this area, as there are many ways to deliver it and unique.",
       "FOR_WHO_IS_COURSE_MIDDLE_TITLE": "Confectionery for lovers",
       "FOR_WHO_IS_COURSE_MIDDLE_TEXT": "It is a great option for those who like to cook and surprise themselves relatives, guests. It is very nicely served, they will definitely be satisfied with you all:"
-
     },
     "EASY_TO_EARN" : {
       "WHY_CHOOSE_PASTA": "Why choose French macaron?",
@@ -59,7 +57,6 @@
       "POSSIBILITY_TO_EARN_TITLE": "Good way to make money",
       "POSSIBILITY_TO_EARN": "It's a good way to make money, because it's quality ար to make delicious in this case always has its demand. Expensive ingredients, therefore also high value: Of course, if you buy a lot of ingredients: convenient for you then you will win twice as much."
     }
-
   },
   "AUTHENTICATION": {
     "ERRORS": {
@@ -75,15 +72,25 @@
     },
     "VERIFICATION": {
       "ERRORS": {
-        "MALFORMED": "The verification code is  expired, or has already been used",
-        "RESEND_CODE_TEXT": "In order to resend the verification code, please",
-        "VERIFICATION_SUCCESS": "Your email has been verified successfully"
+        "MALFORMED": "The verification link is  expired, or has already been used",
+        "RESET_PASSWORD_CODE_EXPIRED": "The reset password verification link is expired",
+        "SING_IN_FOR_VERIFICATION": "In order to verify your email, you have to be signed in"
       },
-      "FORGOT_PASSWORD": "Forgot password?"
+      "SUCCESS": {
+        "RESEND_CODE_SUCCESS": "The verification link has been sent to your email address",
+        "VERIFICATION_SUCCESS": "Your email has been verified successfully",
+        "VERIFICATION_SUCCESS_ALREADY": "Your email already has been verified",
+        "VERIFICATION_SUCCESS_PASSWORD": "Your password has been changed successfully",
+        "FORGOT_PASSWORD_LINK_SEND": "Password reset email sent, check your inbox"
+
+      },
+      "RESEND_CODE_TEXT": "In order to resend the verification code, please",
+      "FORGOT_PASSWORD": "Forgot password?",
+      "VERIFICATION_INFO": "In order to be able to use your account, please visit your email account  <strong>({{value}})</strong> and click on verification link",
+      "NEW_PASSWORD": "Enter new password"
+
     }
   },
-
-
   "MASTER_CLASS": {
       "MASTER_CLASS_TITLE": "Masterclass"
   },
@@ -103,9 +110,8 @@
     "SIGN_OUT": "Sign out",
     "SIGN_UP": "Sign up",
     "CLICK_HERE": "Click here",
-    "CLOSE": "Close"
-
-
+    "CLOSE": "Close",
+    "SUBMIT": "Submit"
   }
 
 }

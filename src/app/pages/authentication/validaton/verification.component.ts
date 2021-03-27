@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { take } from 'rxjs/operators';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from '../../../shared/services/toastr.service';
+import firebase from 'firebase';
+import User = firebase.User;
 
 @Component({
   selector: 'jungle-verification',
@@ -12,45 +14,62 @@ import { ToastrService } from '../../../shared/services/toastr.service';
 })
 export class VerificationComponent implements OnInit {
   public malformed = false;
+  public resendEmail = false;
+  userEmail: string;
+  params: any = null;
+  public isPassword: boolean;
+  public passwordLengthError = false;
   constructor(
     private auth: AuthService,
     private localize: LocalizeRouterService,
     private router: Router,
-    private toast: ToastrService
-  ) {}
-
-  ngOnInit(): void {
-    this.auth
-      .isLoggedIn()
-      .pipe(take(1))
-      .subscribe((user) => {
-        console.log('useeer', user);
-        if (user && user.emailVerified === false) {
-          this.auth.verifyCode().then((res) => {
-            console.log('res from verification conp', res);
-            if (typeof res === 'boolean') {
-              this.toast
-                .success(
-                  'AUTHENTICATION.VERIFICATION.ERRORS.VERIFICATION_SUCCESS'
-                )
-                .then(() => {
-                  const urlToNavigate: any = this.localize.translateRoute(
-                    '/authentication'
-                  );
-                  this.router.navigate([urlToNavigate]);
-                });
-            } else if (res.message.includes('malformed')) {
-              this.malformed = true;
-            }
-          });
-        } else {
-          const urlToNavigate: any = this.localize.translateRoute(
-            '/authentication'
-          );
-          this.router.navigate([urlToNavigate]);
-        }
-      });
+    private toast: ToastrService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params.oobCode) {
+        this.params = params;
+      }
+    });
   }
 
-  reSendEmailVerify() {}
+  ngOnInit(): void {
+    if (this.params && this.params.mode === 'verifyEmail') {
+      this.verifyEmail();
+    } else {
+      this.isPassword = true;
+    }
+  }
+  verifyEmail() {
+    if (!this.params.oobCode) {
+      return;
+    }
+    this.auth.verifyEmail(this.params.oobCode).then((res) => {
+      if (!res) {
+        return;
+      }
+      if (res.message.includes('malformed')) {
+        this.malformed = true;
+        this.resendEmail = false;
+      }
+    });
+  }
+
+  resetPassword(password: string) {
+    if (!password) {
+      return;
+    } else if (password.length < 6) {
+      this.passwordLengthError = true;
+    } else {
+      this.passwordLengthError = false;
+      this.auth.resetPassword(this.params.oobCode, password);
+    }
+  }
+  reSendEmailVerify() {
+    this.auth.reSendVerificationMail(this.auth.user).then((_) => {
+      this.userEmail = this.auth.user.email;
+      this.malformed = false;
+      this.resendEmail = true;
+    });
+  }
 }

@@ -1,6 +1,7 @@
 @import '../../../../variable';
 
 .course_content_cont {
+  padding: 30px;
   @include for-size(lt-md) {
     padding: 30px;
   }
