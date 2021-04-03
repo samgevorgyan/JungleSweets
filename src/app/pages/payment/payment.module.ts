@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MasterClassComponent } from './master-class.component';
+import { PaymentComponent } from './payment.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ShareModule } from '../../modules/share/share.module';
 
-export const routes: Routes = [{ path: '', component: MasterClassComponent }];
+export const routes: Routes = [{ path: '', component: PaymentComponent }];
 
 @NgModule({
-  declarations: [MasterClassComponent],
+  declarations: [PaymentComponent],
   imports: [CommonModule, ShareModule, RouterModule.forChild(routes)],
 })
-export class MasterClassModule {}
+export class PaymentModule {}

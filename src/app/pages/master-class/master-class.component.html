@@ -1,5 +1,83 @@
 <div class="master_class_main_container">
-  <div *ngIf="!emailVerified">
-    email is not verified, we have send confirmation link to your email address
+  <div class="master_class_back"></div>
+  <div class="email_verify" *ngIf="!emailVerified">
+    {{ 'MASTER_CLASS.EMAIL_VERIFIED' | translate }}
+  </div>
+  <div class="is_not_purchased" *ngIf="!dbUser?.isPurchased && emailVerified">
+    <h2>{{ 'MASTER_CLASS.IS_PURCHASED' | translate }}</h2>
+
+    <div
+      class="transfers_methods"
+      fxLayout="column"
+      fxLayoutAlign="center start"
+      fxLayoutGap="30px"
+    >
+      <span
+        >{{ 'MASTER_CLASS.TRANSFER_TO_CARD' | translate }}
+        <span class="numbers"> 42424242424242</span></span
+      >
+
+      <span
+        >{{ 'MASTER_CLASS.TRANSFER_TO_ACCOUNT' | translate }}
+        <span class="numbers"> 42424242424242</span></span
+      >
+      <span
+        >{{ 'MASTER_CLASS.TRANSFER_TO_IDRAM' | translate
+        }}<span class="numbers"> 42424242424242</span></span
+      >
+    </div>
+  </div>
+  <div
+    class="master_class_content"
+    *ngIf="dbUser?.isPurchased && emailVerified"
+  >
+    <div class="video_parent_div">
+      <video [src]="videoLink" controls>
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="pdf_links_part">
+      <ul
+        fxLayout="column"
+        fxLayoutAlign="space-evenly center"
+        fxLayoutGap="60px"
+      >
+        <li>
+          <a
+            href="../../../assets/pdf/necessary-ingredient.pdf"
+            target="_blank"
+            >{{ 'MASTER_CLASS.INGREDIENT' | translate }}</a
+          >
+        </li>
+        <li>
+          <a href="../../../assets/pdf/fillings.pdf" target="_blank">{{
+            'MASTER_CLASS.FILINGS' | translate
+          }}</a>
+        </li>
+        <li>
+          <a href="../../../assets/pdf/trafaret.pdf" target="_blank">{{
+            'MASTER_CLASS.TRAFARET' | translate
+          }}</a>
+        </li>
+        <li>
+          <a
+            href="../../../assets/pdf/macaron-hand-mixer.pdf"
+            target="_blank"
+            >{{ 'MASTER_CLASS.MACARON_MIXER' | translate }}</a
+          >
+        </li>
+        <li>
+          <a href="../../../assets/pdf/make-photo.pdf" target="_blank">{{
+            'MASTER_CLASS.MAKE_PHOTO' | translate
+          }}</a>
+        </li>
+        <li>
+          <a href="../../../assets/pdf/chiscake.pdf" target="_blank">{{
+            'MASTER_CLASS.BONUS_CHEESECAKE' | translate
+          }}</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

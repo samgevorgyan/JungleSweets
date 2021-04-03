@@ -2,7 +2,8 @@
 .master_class_main_container {
   background-color: white;
   margin: auto;
-
+  min-height: calc(100vh - 371px);
+  padding: 30px 0;
   width: 1280px;
   @include for-size(lgm) {
     width: 1200px;
@@ -15,5 +16,72 @@
   }
   @include for-size(lt-sm) {
     width: 100%;
+  }
+  .master_class_back {
+    background-image: url('../../../assets/img/courses/about/IMG_7158.JPG');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 500px;
+  }
+  .email_verify {
+    text-align: center;
+    padding: 50px;
+    color: $main_gold_color;
+  }
+  .is_not_purchased {
+    padding: 30px;
+    color: $main_gold_color;
+    .transfers_methods {
+      margin: 50px 0;
+      @include card_shadow;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .numbers {
+      font-size: 30px;
+      padding-left: 50px;
+      font-weight: bold;
+    }
+  }
+  .master_class_content {
+    padding: 30px 0;
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .video_parent_div {
+      text-align: center;
+      video {
+        width: 520px;
+        height: 440px;
+        box-shadow: 0px 2px 1px -1px $main_gold_color,
+          0px 1px 1px 0px $main_gold_color, 0px 1px 3px 0px $main_gold_color;
+        @include for-size(lt-sm) {
+          width: 80%;
+        }
+      }
+    }
+    .pdf_links_part {
+      padding: 150px 0;
+      ul {
+        li {
+          cursor: pointer;
+          text-align: center;
+          a {
+            text-decoration: none;
+            color: $main_gold_color;
+            font-size: 50px;
+            text-align: center;
+            &:hover {
+              text-decoration: underline;
+            }
+            @include for-size(lt-sm) {
+              font-size: 30px;
+            }
+          }
+        }
+      }
+    }
   }
 }

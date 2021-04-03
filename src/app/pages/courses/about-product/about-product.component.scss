@@ -1,10 +1,13 @@
 @import '../../../../variable';
 .courses_about_product {
   width: 100%;
-  background-image: url('../../../../assets/img/force-buy/force-buy.jpg');
-  background-size: 100% 100%;
+  background-image: url('../../../../assets/img/courses/about/DC83B505-C4F1-41AF-9ACD-C5A3466B4B42.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
   padding: 50px;
+  @include for-size(lt-sm) {
+    background-size: cover;
+  }
 
   .courses_about_text {
     .macaron_virtual {

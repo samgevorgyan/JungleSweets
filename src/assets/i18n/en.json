@@ -49,7 +49,7 @@
       "FOR_WHO_IS_COURSE_MIDDLE_TEXT": "It is a great option for those who like to cook and surprise themselves relatives, guests. It is very nicely served, they will definitely be satisfied with you all:"
     },
     "EASY_TO_EARN" : {
-      "WHY_CHOOSE_PASTA": "Why choose French macaron?",
+      "WHY_CHOOSE_PASTA": "Why to choose French macarons?",
       "EASY_TO_PRODUCE_TITLE": "It is easy to present in your own way",
       "EASY_TO_PRODUCE": "Easy to present in your own way, you choose how to serve or shape (if: the customer does not have a reasonable option)",
       "EASY_TO_KEEP_TITLE": "Easy to store",
@@ -92,7 +92,19 @@
     }
   },
   "MASTER_CLASS": {
-      "MASTER_CLASS_TITLE": "Masterclass"
+    "MASTER_CLASS_TITLE": "MasterClass",
+    "INGREDIENT": "Բաղադրատոմս",
+    "FILINGS": "Միջուկ",
+    "TRAFARET": "Տրաֆարետ",
+    "MACARON_MIXER": "Մակարոն՝ ձեռքի հարիչով",
+    "MAKE_PHOTO": "ինչպես ճիշտ նկարել",
+    "BONUS_CHEESECAKE": "* Բոնուս բաղադրատոմս",
+    "EMAIL_VERIFIED": "email is not verified, we have send confirmation link to your email address.In order to be able to see your masterclass, please check your email",
+    "IS_PURCHASED": "In order to be able to see the course content, please buy it.You can do by choosing one of the following  methods",
+    "TRANSFER_TO_CARD": "Transfer to  card by using this card number",
+    "TRANSFER_TO_ACCOUNT": "Transfer to  bank account by using this account number",
+    "TRANSFER_TO_IDRAM": "Transfer to  Idram account by using this Idram ID"
+
   },
   "FOOTER": {
     "CONTACT": "Contact",

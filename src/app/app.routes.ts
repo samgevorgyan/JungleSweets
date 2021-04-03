@@ -21,6 +21,11 @@ export const routes: Routes = [
         (mod) => mod.AuthenticationModule
       ),
   },
+  // {
+  //   path: 'payment',
+  //   loadChildren: () =>
+  //     import('./pages/payment/payment.module').then((mod) => mod.PaymentModule),
+  // },
   {
     path: 'master-class',
     loadChildren: () =>

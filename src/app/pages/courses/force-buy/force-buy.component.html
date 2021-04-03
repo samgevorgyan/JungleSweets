@@ -5,7 +5,9 @@
     fxLayoutAlign="space-between center"
   >
     <span>Онлайн мастер-класс <span class="sale">30000</span> 25000 AMD</span>
-    <button class="buy_now_button">Buy now</button>
+    <button class="buy_now_button" (click)="navigateByUrl('/payment')">
+      Buy now
+    </button>
   </div>
   <div *ngIf="showTimer">zaxchin mnacel e hethashvark {{ display }}</div>
 </div>

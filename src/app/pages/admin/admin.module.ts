@@ -10,12 +10,14 @@ import { AdminLoginComponent } from './login/admin-login.component';
 import { AdminLoginGuard } from './guards/login.guard';
 import { AboutMeAdminComponent } from './about-me/about-me-admin.component';
 import { AssortmentAdminComponent } from './assortment/assortment-admin.component';
+import { MasterClassComponent } from './master-class/master-class.component';
 
 export const routes: Routes = [
   { path: '', component: AdminLoginComponent },
   { path: 'main', component: AdminComponent },
   { path: 'about', component: AboutMeAdminComponent },
   { path: 'assortments', component: AssortmentAdminComponent },
+  { path: 'master-class', component: MasterClassComponent },
 ];
 
 @NgModule({
@@ -24,6 +26,7 @@ export const routes: Routes = [
     AdminLoginComponent,
     AboutMeAdminComponent,
     AssortmentAdminComponent,
+    MasterClassComponent,
   ],
   imports: [
     CommonModule,

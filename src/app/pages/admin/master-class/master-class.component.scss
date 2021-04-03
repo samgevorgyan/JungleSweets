@@ -1,0 +1,33 @@
+@import '../../../../variable';
+.master_class_cont {
+  width: 1280px;
+  background-color: white;
+  margin: auto;
+
+  @include for-size(lgm) {
+    width: 1200px;
+  }
+  @include for-size(md) {
+    width: 900px;
+  }
+  @include for-size(sm) {
+    width: 600px;
+  }
+  @include for-size(lt-sm) {
+    width: 100%;
+  }
+  @include card_shadow;
+  table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  td,
+  th {
+    width: 25%;
+  }
+}

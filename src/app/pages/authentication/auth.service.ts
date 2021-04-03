@@ -1,19 +1,13 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase/app';
-import { ActivatedRoute, Router } from '@angular/router';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from './user.interface';
-import { first, take, tap } from 'rxjs/operators';
-import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from '../../shared/services/toastr.service';
-import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { FbStoragePaths } from '../../enums/fbStoragePaths';
 
 @Injectable({
   providedIn: 'root',
@@ -22,23 +16,32 @@ export class AuthService {
   params: any;
   emailVerified: boolean;
   user: User;
+  dbUser: User;
+  videoLink: string;
+
   constructor(
     public afAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone,
     public afs: AngularFirestore,
-
     private localize: LocalizeRouterService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private storage: AngularFireStorage
   ) {
     this.isLoggedIn().subscribe((user) => {
       this.user = user;
       if (user) {
         console.log('user', user);
+        this.getUserFromDb();
         this.emailVerified = user.emailVerified;
       } else {
         this.emailVerified = false;
       }
+    });
+
+    const ref = this.storage.ref(FbStoragePaths.macaronVideo);
+    ref.getDownloadURL().subscribe((res) => {
+      this.videoLink = res;
     });
   }
 
@@ -59,6 +62,7 @@ export class AuthService {
                   const urlToNavigate: any = this.localize.translateRoute(
                     '/authentication'
                   );
+                  this.emailVerified = true;
                   this.router.navigate([urlToNavigate]);
                 });
             });
@@ -85,6 +89,7 @@ export class AuthService {
       }
     }
   }
+
   resetPassword(oobCode: string, newPassword: string) {
     return this.afAuth
       .confirmPasswordReset(oobCode, newPassword)
@@ -108,14 +113,16 @@ export class AuthService {
       });
   }
 
-  public isLoggedIn(): Observable<User> {
+  public isLoggedIn(): Observable<any> {
     return this.afAuth.authState;
   }
+
   setVerifiedEmail(user) {
     const userInfo: User = {
       uid: user.uid,
       email: user.email,
       emailVerified: user.emailVerified,
+      isPurchased: false,
     };
 
     this.SetUserData(userInfo);
@@ -141,6 +148,7 @@ export class AuthService {
         }
       });
   }
+
   // Sign out
   signOut() {
     this.afAuth.signOut().then(() => {
@@ -180,6 +188,7 @@ export class AuthService {
       lastName: user.lastName,
       password: user.password,
       emailVerified: user.emailVerified,
+      isPurchased: false,
     };
     return this.afs
       .doc(`users/${user.uid}`)
@@ -195,6 +204,7 @@ export class AuthService {
   sendVerificationMail(user) {
     return user.sendEmailVerification();
   }
+
   // Resend email verification link
   reSendVerificationMail(user) {
     return user.sendEmailVerification().then((res) => {
@@ -205,7 +215,7 @@ export class AuthService {
     });
   }
 
-  // Reset Forggot password
+  // Reset Forgot password
   forgotPassword(passwordResetEmail) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
@@ -217,6 +227,15 @@ export class AuthService {
       })
       .catch((error) => {
         window.alert(error);
+      });
+  }
+
+  getUserFromDb() {
+    this.afs
+      .doc<any>(`users/${this.user.uid}`)
+      .valueChanges()
+      .subscribe((dbUser) => {
+        this.dbUser = dbUser;
       });
   }
 }

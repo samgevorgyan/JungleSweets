@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { Router } from '@angular/router';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Component({
   selector: 'jungle-force-buy',
@@ -11,9 +14,19 @@ export class ForceBuyComponent implements OnInit {
   interval;
   public showTimer = true;
 
-  constructor() {}
+  constructor(
+    private localize: LocalizeRouterService,
+    private router: Router,
+    private funct: AngularFireFunctions
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.startTimer();
+    // const fun = this.funct.httpsCallable('stripeCreateCharge');
+    // fun({}).subscribe((res) => {
+    //   console.log('res', res);
+    // });
+  }
 
   startTimer() {
     this.interval = setInterval(() => {
@@ -27,7 +40,7 @@ export class ForceBuyComponent implements OnInit {
       this.display =
         tempDate.d + ':' + tempDate.h + ':' + tempDate.m + ':' + tempDate.s;
       console.log('asd', tempDate);
-    }, 5000);
+    }, 1000);
   }
 
   transform(milliseconds: number) {
@@ -49,5 +62,10 @@ export class ForceBuyComponent implements OnInit {
     hours = totalHours % 24;
 
     return { d: days, h: hours, m: minutes, s: seconds };
+  }
+
+  navigateByUrl(url) {
+    const urlToNavigate: any = this.localize.translateRoute(url);
+    this.router.navigate([urlToNavigate]);
   }
 }

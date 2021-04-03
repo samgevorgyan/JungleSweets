@@ -87,6 +87,7 @@ export class AuthComponent implements OnInit {
           lastName: this.lastName.value,
           password: this.password.value.trim(),
           uid: '',
+          isPurchased: false,
         };
         this.authService.signUp(userInfo).then((resultcomp) => {
           console.log('result arden componentum', resultcomp);
