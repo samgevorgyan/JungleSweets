@@ -62,7 +62,7 @@ export class VerificationComponent implements OnInit {
       this.passwordLengthError = true;
     } else {
       this.passwordLengthError = false;
-      this.auth.resetPassword(this.params.oobCode, password);
+      this.auth.resetPassword(this.params, password);
     }
   }
   reSendEmailVerify() {

@@ -3,11 +3,37 @@
     class="buy_now_button_div"
     fxLayout="column"
     fxLayoutAlign="space-between center"
+    fxLayoutGap="50px"
   >
-    <span>Онлайн мастер-класс <span class="sale">30000</span> 25000 AMD</span>
-    <button class="buy_now_button" (click)="navigateByUrl('/payment')">
+    <span *ngIf="!showTimer" class="no_sale"> 30000 AMD</span>
+
+    <div
+      *ngIf="showTimer"
+      fxLayout="column"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="30px"
+    >
+      <span class="attention">{{
+        'COURSES.FORCE_BY.ATTENTION' | translate
+      }}</span>
+      <span class="lim">{{ 'COURSES.FORCE_BY.LIMITED_TIME' | translate }}</span>
+      <span class="sale_old"
+        >30000 {{ 'COURSES.FORCE_BY.CURRENCY' | translate }}</span
+      >
+      <span class="sale">
+        {{ discountAmount }} {{ 'COURSES.FORCE_BY.CURRENCY' | translate }}</span
+      >
+
+      <div
+        fxLayout="column"
+        fxLayoutAlign="space-between center"
+        fxLayoutGap="20px"
+      >
+        <span id="canvas_div"></span>
+      </div>
+    </div>
+    <button class="buy_now_button" (click)="navigateByUrl('/authentication')">
       Buy now
     </button>
   </div>
-  <div *ngIf="showTimer">zaxchin mnacel e hethashvark {{ display }}</div>
 </div>

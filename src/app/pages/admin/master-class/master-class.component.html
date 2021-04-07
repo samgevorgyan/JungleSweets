@@ -1,5 +1,42 @@
 <div class="master_class_cont">
+  <div
+    class="sale_admin"
+    fxLayout="column"
+    fxLayoutAlign="space-between center"
+    fxLayoutGap="30px"
+  >
+    <h1 *ngIf="discount">Allow discount and set discounted amount</h1>
+    <span *ngIf="!discount"
+      >sorry, your last discount ends in
+      {{ discountEnds | date: 'dd-MM-yyyy hh:mm:ss' }}</span
+    >
+    <div
+      *ngIf="discount"
+      class="sale_input_div"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayoutGap="5px"
+    >
+      <input
+        type="number"
+        ngModel
+        #discount="ngModel"
+        placeholder="enter discounted amount"
+        [disabled]=""
+      />
+      <button
+        mat-raised-button
+        [disabled]="discount.value === ''"
+        color="primary"
+        (click)="startDiscount(discount.value)"
+      >
+        start timer
+      </button>
+    </div>
+  </div>
+
   <div>
+    <h1>All users list ({{ users?.length }})</h1>
     <mat-form-field>
       <mat-label>Filter</mat-label>
       <input
@@ -44,6 +81,7 @@
               #inputEl
               type="checkbox"
               [checked]="row.isPurchased"
+              [disabled]="row.isPurchased"
               (change)="changePurchasedState(inputEl.checked, row)"
             />
           </td>
@@ -60,7 +98,7 @@
         </tr>
       </table>
 
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
     </div>
   </div>
 </div>

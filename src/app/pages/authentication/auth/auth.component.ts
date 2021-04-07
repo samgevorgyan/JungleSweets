@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { User } from '../user.interface';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from '../../../shared/services/toastr.service';
 
 @Component({
   selector: 'jungle-auth',
@@ -16,20 +18,31 @@ export class AuthComponent implements OnInit {
   isSignIn = true;
   signInForm = this.fb.group({
     email: [
-      'samvelgevorgyan87@gmail.com',
+      '',
       [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ],
     ],
-    password: ['asdasdsad', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
     firstName: [''],
     lastName: [''],
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute,
+    private toast: ToastrService
+  ) {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      console.log('params', params);
+    });
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isSignIn = this.authService.isSignIn;
+  }
   get email() {
     return this.signInForm.get('email');
   }
@@ -99,6 +112,8 @@ export class AuthComponent implements OnInit {
   restorePassword() {
     if (this.email.value) {
       this.authService.forgotPassword(this.email.value.trim());
+    } else {
+      this.toast.error('AUTHENTICATION.ERRORS.EMAIL_REQUIRED');
     }
   }
 }

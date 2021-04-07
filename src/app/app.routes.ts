@@ -14,13 +14,7 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./pages/courses/courses.module').then((mod) => mod.CoursesModule),
   },
-  {
-    path: 'authentication',
-    loadChildren: () =>
-      import('./pages/authentication/authentication.module').then(
-        (mod) => mod.AuthenticationModule
-      ),
-  },
+
   // {
   //   path: 'payment',
   //   loadChildren: () =>
@@ -35,7 +29,14 @@ export const routes: Routes = [
     canLoad: [LoginGuard],
   },
   {
-    path: 'admin',
+    path: 'authentication',
+    loadChildren: () =>
+      import('./pages/authentication/authentication.module').then(
+        (mod) => mod.AuthenticationModule
+      ),
+  },
+  {
+    path: 'miqrob',
     loadChildren: () =>
       import('./pages/admin/admin.module').then((mod) => mod.AdminModule),
   },

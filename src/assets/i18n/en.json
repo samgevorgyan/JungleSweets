@@ -23,40 +23,49 @@
     "COURSE_CONTENT": {
       "WHAT_INCLUDE_COURSE": "What does the course include?",
       "VIDEO_TITLE": "Preparation video",
-      "VIDEO_TEXT": "Video made by Italian meringue based on sugar using a small amount, preparing the base kernel.",
+      "VIDEO_TEXT": "Video based on Italian meringue,with small amount of sugar, making of a basic filling.",
       "RECIPE_TITLE": "Recipe",
-      "RECIPE_TEXT": "Detailed description of the recipe, necessary ingredients and list of ingredients, chocolate pasta recipe, right hand mixer work equipment.",
+      "RECIPE_TEXT": "Detailed description of the recipe, list of necessary ingredients, chocolate macaron recipe, macarons with  hand mixer .",
       "FILLINGS_TITLE": "Fillings",
-      "FILLINGS_TEXT": "Nucleus recipe, detailed description և correct approach storage methods.",
+      "FILLINGS_TEXT": "Macaron fillings' recipes, detailed description ,correct approach, storage methods.",
       "CUTTINGS_TITLE": "cuttings",
-      "CUTTINGS_TEXT": "Stencils A3 size, not only circular.",
+      "CUTTINGS_TEXT": "Circle outlines of size A3,.",
       "FEEDBACK_TITLE": "Contact us for 3 months",
-      "FEEDBACK_TEXT": "Contact me for 3 months, bug fixes at home after work:",
+      "FEEDBACK_TEXT": "Contacting  me for 3 months, discussions after doing a homework:",
       "UNLIMITED_TITLE": "Unlimited access",
       "UNLIMITED_TEXT": "Unlimited access to materials.",
-      "DRAW_PRESENT_TITLE": "How to draw and present correctly?",
-      "DRAW_PRESENT_TEXT": "How to properly draw and present a dessert that is lacking in our reality? It is not possible, because the customer is the first to be attracted by the appearance, which should be conveyed as accurately as possible through the picture.",
+      "DRAW_PRESENT_TITLE": "How to take photos and present correctly?",
+      "DRAW_PRESENT_TEXT": "How to photograph and present a dessert , that is not less important  in our reality! What attracts a client at first is the appearance, which should be transferred as accurately as possible through the photo.",
       "BONUS_RECIPE_TITLE": "Bonus recipe",
       "BONUS_RECIPE_TEXT": "A bonus recipe that will definitely not leave you indifferent - Cheesecake New York."
     },
     "WHO_IS_FOR": {
       "FOR_WHO_IS_COURSE": "Who is the course for?",
       "FOR_WHO_IS_COURSE_BEGINNER_TITLE": "For beginner confectioners",
-      "FOR_WHO_IS_COURSE_BEGINNER_TEXT": "If you are just starting out, you do not know how to attract customers? French pasta will help you in this matter, as they are always relevant and demanded",
+      "FOR_WHO_IS_COURSE_BEGINNER_TEXT": "If you are just starting out, you do not know how to attract customers? French macarons will help you in this matter, as they are always relevant and demanded",
       "FOR_WHO_IS_COURSE_PROFESSIONAL_TITLE": "For experienced professionals",
-      "FOR_WHO_IS_COURSE_PROFESSIONAL_TEXT": "If you have skills in confectionery, it would be great to add it. One's. Macaroni will allow you to develop your mind: to have your own unique style in this area, as there are many ways to deliver it and unique.",
+      "FOR_WHO_IS_COURSE_PROFESSIONAL_TEXT": "If you have skills in confectionery, it would be great to add it. Macarons will allow you to develop your mind: to have your own style in this area, as there are many ways to deliver it and be unique.",
       "FOR_WHO_IS_COURSE_MIDDLE_TITLE": "Confectionery for lovers",
-      "FOR_WHO_IS_COURSE_MIDDLE_TEXT": "It is a great option for those who like to cook and surprise themselves relatives, guests. It is very nicely served, they will definitely be satisfied with you all:"
+      "FOR_WHO_IS_COURSE_MIDDLE_TEXT": "It is a great option for those who like to cook and surprise their relatives or guests. It is served very nicely , they will definitely be satisfied with you :"
     },
     "EASY_TO_EARN" : {
-      "WHY_CHOOSE_PASTA": "Why to choose French macarons?",
+      "WHY_CHOOSE_PASTA": "Why choose French macarons?",
       "EASY_TO_PRODUCE_TITLE": "It is easy to present in your own way",
-      "EASY_TO_PRODUCE": "Easy to present in your own way, you choose how to serve or shape (if: the customer does not have a reasonable option)",
+      "EASY_TO_PRODUCE": "Easy to present in your own way, you choose how to serve or decorate (if: the customer does not have a certain option)",
       "EASY_TO_KEEP_TITLE": "Easy to store",
-      "EASY_TO_KEEP": "It is easy to store because they are very well stored in the freezer you save your time. And in case of a random order, it becomes easier your work.",
+      "EASY_TO_KEEP": "It is easy to store because they are very well stored in the freezer, besides you can save your time. And in case of a random order, it becomes easier to manage.",
       "POSSIBILITY_TO_EARN_TITLE": "Good way to make money",
-      "POSSIBILITY_TO_EARN": "It's a good way to make money, because it's quality ար to make delicious in this case always has its demand. Expensive ingredients, therefore also high value: Of course, if you buy a lot of ingredients: convenient for you then you will win twice as much."
-    }
+      "POSSIBILITY_TO_EARN": "It's a good way to make money, because if you are doing it with high quality and tasty it always has its demand. Expensive ingredients, therefore also high value: Of course, if you buy a lot of ingredients from the place you know it will be more convenient and  you will win twice as much."
+    },
+    "FORCE_BY" : {
+      "ATTENTION": "ATTENTION!!!",
+      "LIMITED_TIME": "Limited time",
+      "DAYS": "Day",
+      "HOURS": "Hour",
+      "MINUTES": "Minute",
+      "SECONDS": "Second",
+      "CURRENCY": "AMD"
+      }
   },
   "AUTHENTICATION": {
     "ERRORS": {
@@ -97,13 +106,15 @@
     "FILINGS": "Միջուկ",
     "TRAFARET": "Տրաֆարետ",
     "MACARON_MIXER": "Մակարոն՝ ձեռքի հարիչով",
-    "MAKE_PHOTO": "ինչպես ճիշտ նկարել",
+    "MAKE_PHOTO": "Ինչպես ճիշտ նկարել",
     "BONUS_CHEESECAKE": "* Բոնուս բաղադրատոմս",
     "EMAIL_VERIFIED": "email is not verified, we have send confirmation link to your email address.In order to be able to see your masterclass, please check your email",
     "IS_PURCHASED": "In order to be able to see the course content, please buy it.You can do by choosing one of the following  methods",
     "TRANSFER_TO_CARD": "Transfer to  card by using this card number",
     "TRANSFER_TO_ACCOUNT": "Transfer to  bank account by using this account number",
-    "TRANSFER_TO_IDRAM": "Transfer to  Idram account by using this Idram ID"
+    "TRANSFER_TO_IDRAM": "Transfer to  Idram account by using this Idram ID",
+    "WELCOME_MESSAGE": "Welcome dear",
+    "WELCOME_WISH": "We wish you productive work"
 
   },
   "FOOTER": {
@@ -123,7 +134,8 @@
     "SIGN_UP": "Sign up",
     "CLICK_HERE": "Click here",
     "CLOSE": "Close",
-    "SUBMIT": "Submit"
+    "SUBMIT": "Submit",
+    "OPEN": "Open"
   }
 
 }

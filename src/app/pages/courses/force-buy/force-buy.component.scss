@@ -1,23 +1,65 @@
 @import '../../../../variable';
 .force_buy_cont {
-  background-color: #fff5f6;
-  padding: 20px 0;
+  padding: 70px 0;
   width: 100%;
+  background: #fff5f6;
+  background-image: url('../../../../assets/img/force-buy/sale_fone_2.jpg');
+  background-position: top center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+
   .buy_now_button_div {
     text-align: center;
     width: 100%;
-    span {
-      margin-right: 50px;
+    color: $main_gold_color;
+    .attention {
+      font-size: 40px;
+      color: red;
+      font-family: Arial, Helvetica, sans-serif;
+      @include for-size(lt-sm) {
+        font-size: 30px;
+      }
     }
     .sale {
-      text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 35px;
+      color: black;
+    }
+    .sale_old {
+      color: red;
+      font-family: Arial, Helvetica, sans-serif;
+      text-decoration: line-through;
+      font-size: 30px;
+    }
+    .no_sale {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 35px;
+    }
+    .lim {
+      font-size: 40px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: black;
+      @include for-size(lt-sm) {
+        font-size: 30px;
+      }
     }
     .buy_now_button {
       @include standard-button;
+      margin: 20px 0;
+      width: 300px;
     }
   }
   img {
     width: 100%;
     height: 300px;
   }
+}
+canvas {
+  width: 900px;
+  height: 200px;
+  display: block;
+  position: relative;
+  background: transparent;
+  margin: 40px auto;
 }

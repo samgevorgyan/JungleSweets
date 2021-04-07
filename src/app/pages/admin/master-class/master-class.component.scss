@@ -17,6 +17,24 @@
     width: 100%;
   }
   @include card_shadow;
+
+  .sale_admin {
+    @include card_shadow;
+    background-image: url('../../../../assets/img/master-class/IMG_6644.JPG');
+    padding: 50px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    .sale_input_div {
+      padding: 10px;
+      input {
+        @include default_inputs;
+        margin: 0;
+      }
+      button {
+        width: 200px;
+      }
+    }
+  }
   table {
     width: 100%;
   }

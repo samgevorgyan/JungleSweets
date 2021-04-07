@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Inject, Injectable, NgZone, PLATFORM_ID } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -8,6 +8,7 @@ import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { ToastrService } from '../../shared/services/toastr.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FbStoragePaths } from '../../enums/fbStoragePaths';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class AuthService {
   user: User;
   dbUser: User;
   videoLink: string;
+  isSignIn = true;
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -26,7 +28,8 @@ export class AuthService {
     public afs: AngularFirestore,
     private localize: LocalizeRouterService,
     private toast: ToastrService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
     this.isLoggedIn().subscribe((user) => {
       this.user = user;
@@ -39,10 +42,17 @@ export class AuthService {
       }
     });
 
-    const ref = this.storage.ref(FbStoragePaths.macaronVideo);
-    ref.getDownloadURL().subscribe((res) => {
-      this.videoLink = res;
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      const ref = this.storage.ref(FbStoragePaths.macaronVideo);
+      console.log('ref', ref);
+      ref.getMetadata().subscribe((meta) => {
+        console.log('meta', meta);
+      });
+
+      ref.getDownloadURL().subscribe((res) => {
+        this.videoLink = res;
+      });
+    }
   }
 
   async verifyEmail(oobCode: string) {
@@ -53,16 +63,21 @@ export class AuthService {
         .checkActionCode(oobCode)
         .then((res) => {
           if (res.operation && res.operation.includes('VERIFY_EMAIL')) {
-            this.afAuth.applyActionCode(oobCode).then(() => {
+            this.afAuth.applyActionCode(oobCode).then((ress) => {
+              console.log('res', ress);
+
               this.toast
                 .success(
-                  'AUTHENTICATION.VERIFICATION.SUCCESS.VERIFICATION_SUCCESS'
+                  'AUTHENTICATION.VERIFICATION.SUCCESS.VERIFICATION_SUCCESS',
+                  5000
                 )
                 .then(() => {
                   const urlToNavigate: any = this.localize.translateRoute(
                     '/authentication'
                   );
                   this.emailVerified = true;
+                  this.dbUser.emailVerified = true;
+                  this.setUserData(this.dbUser);
                   this.router.navigate([urlToNavigate]);
                 });
             });
@@ -90,10 +105,17 @@ export class AuthService {
     }
   }
 
-  resetPassword(oobCode: string, newPassword: string) {
+  resetPassword(params: any, newPassword: string) {
     return this.afAuth
-      .confirmPasswordReset(oobCode, newPassword)
-      .then(() => {
+      .confirmPasswordReset(params.oobCode, newPassword)
+      .then((res) => {
+        console.log('email', params.customField);
+        this.getUserByEmail(params.customField)
+          .valueChanges()
+          .subscribe((user: User[]) => {
+            user[0].password = newPassword;
+            this.setUserData(user[0]);
+          });
         const urlToNavigate: any = this.localize.translateRoute(
           '/authentication'
         );
@@ -115,17 +137,6 @@ export class AuthService {
 
   public isLoggedIn(): Observable<any> {
     return this.afAuth.authState;
-  }
-
-  setVerifiedEmail(user) {
-    const userInfo: User = {
-      uid: user.uid,
-      email: user.email,
-      emailVerified: user.emailVerified,
-      isPurchased: false,
-    };
-
-    this.SetUserData(userInfo);
   }
 
   // Sign in with email/password
@@ -164,7 +175,7 @@ export class AuthService {
       .then((result) => {
         userInfo.uid = result.user.uid;
         userInfo.emailVerified = result.user.emailVerified;
-        this.SetUserData(userInfo);
+        this.setUserData(userInfo);
         this.sendVerificationMail(result.user).then((res) => {
           const urlToNavigate: any = this.localize.translateRoute(
             '/master-class'
@@ -180,7 +191,7 @@ export class AuthService {
       });
   }
 
-  SetUserData(user) {
+  setUserData(user: User) {
     const userData: User = {
       uid: user.uid,
       email: user.email,
@@ -188,7 +199,7 @@ export class AuthService {
       lastName: user.lastName,
       password: user.password,
       emailVerified: user.emailVerified,
-      isPurchased: false,
+      isPurchased: user.isPurchased ? user.isPurchased : false,
     };
     return this.afs
       .doc(`users/${user.uid}`)
@@ -199,7 +210,11 @@ export class AuthService {
         console.log('eerrrrrror', error);
       });
   }
-
+  getUserByEmail(email) {
+    return this.afs.collection(`users`, (ref) =>
+      ref.where('email', '==', email)
+    );
+  }
   // Send email verification when new user sign up
   sendVerificationMail(user) {
     return user.sendEmailVerification();

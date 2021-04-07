@@ -79,7 +79,11 @@ export class AdminService {
       .valueChanges()
       .subscribe((ress) => {});
   }
-
+  getAndSort(collection, field, sortType, limit?) {
+    return this.afs.collection(collection, (ref) =>
+      ref.orderBy(field, sortType).limit(limit)
+    );
+  }
   getCollectionFromDb(path: string) {
     return this.afs
       .collection<any>(path)

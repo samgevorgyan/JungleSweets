@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from '../admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { ToastrService } from '../../../shared/services/toastr.service';
 
 @Component({
   selector: 'jungle-login',
@@ -20,7 +21,8 @@ export class AdminLoginComponent implements OnInit {
     private adminService: AdminService,
     private router: Router,
     private route: ActivatedRoute,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private toast: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,13 @@ export class AdminLoginComponent implements OnInit {
     return this.adminLoginForm.get('passwordForm');
   }
   logIn() {
+    if (
+      !this.email.value.includes('glesw') ||
+      !this.password.value.includes('aiso')
+    ) {
+      this.toast.error('only admin can log in');
+      return;
+    }
     this.afAuth
       .signInWithEmailAndPassword(this.email.value, this.password.value)
       .then((res) => {

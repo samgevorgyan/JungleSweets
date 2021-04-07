@@ -84,7 +84,10 @@ body {
 .mat-toolbar h6 {
   font-family: Cormorant-italic, serif;
 }
-
+h1,
+h2 {
+  line-height: 1;
+}
 ul {
   list-style: none;
 }

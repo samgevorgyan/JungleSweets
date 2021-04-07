@@ -11,7 +11,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { LocalizeRouterHttpLoader } from '@gilsdav/ngx-translate-router-http-loader';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
-// import { join } from 'path';
 
 const distFolder = `${environment.ssrUrl}assets/i18n/configi18.json`;
 

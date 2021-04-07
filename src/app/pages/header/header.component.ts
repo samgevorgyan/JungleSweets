@@ -1,15 +1,23 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  Inject,
+  Input,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild,
+} from '@angular/core';
 
 import { observable, Observable } from 'rxjs';
-import { map, shareReplay, tap } from 'rxjs/operators';
+import { filter, map, shareReplay, tap } from 'rxjs/operators';
 import { languageList } from 'src/app/utils/language.list';
 import { LanguageService } from 'src/app/shared/services/language.service';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { AuthService } from '../authentication/auth.service';
 import { User } from '../authentication/user.interface';
 import { MatDrawer } from '@angular/material/sidenav';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'main-header',
@@ -30,13 +38,14 @@ export class HeaderComponent implements OnInit {
     );
 
   isLoggedIn$: Observable<User>;
-
+  masterClass = false;
   constructor(
     private languageService: LanguageService,
     private breakpointObserver: BreakpointObserver,
     private localize: LocalizeRouterService,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {}
 
   ngOnInit() {
@@ -44,6 +53,15 @@ export class HeaderComponent implements OnInit {
       this.setSelectedLanguage(lang);
     });
     this.isLoggedIn$ = this.auth.isLoggedIn();
+    if (isPlatformBrowser(this.platformId)) {
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe((event) => {
+          if (event instanceof RouterEvent) {
+            this.masterClass = event.url.includes('master-class');
+          }
+        });
+    }
   }
 
   navigateByUrl(url) {

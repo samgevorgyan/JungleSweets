@@ -17,8 +17,13 @@
   @include for-size(lt-sm) {
     width: 100%;
   }
+  .hello_user {
+    width: 100%;
+    text-align: center;
+    color: $main_gold_color;
+  }
   .master_class_back {
-    background-image: url('../../../assets/img/courses/about/IMG_7158.JPG');
+    background-image: url('../../../assets/img/master-class/6BDAB65D-8167-4EA8-9D22-C2EED6E31F49.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -66,19 +71,60 @@
       padding: 150px 0;
       ul {
         li {
-          cursor: pointer;
           text-align: center;
-          a {
-            text-decoration: none;
-            color: $main_gold_color;
-            font-size: 50px;
-            text-align: center;
-            &:hover {
-              text-decoration: underline;
-            }
+          width: 70%;
+          height: 200px;
+          @include for-size(lt-sm) {
+            height: auto;
+          }
+          .color_div {
+            background: #f0f0f0
+              linear-gradient(to top, #f0f0f0 5%, #e0b462 100%);
+            height: 100%;
+            flex: 1 1 100%;
+            color: white;
             @include for-size(lt-sm) {
-              font-size: 30px;
+              width: 100%;
+              flex: unset;
+              height: 200px;
             }
+            a {
+              @include standard-button;
+
+              @include for-size(lt-sm) {
+                font-size: 30px;
+              }
+            }
+          }
+          .picture_div {
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 200px;
+            width: 270px;
+            @include for-size(lt-sm) {
+              width: 100%;
+              height: 270px;
+              background-size: 100% 100%;
+            }
+          }
+
+          .master_class_receipt {
+            background-image: url('../../../assets/img/master-class/reciept.jpeg');
+          }
+          .master_class_filings {
+            background-image: url('../../../assets/img/master-class/nuclears.jpeg');
+          }
+          .master_class_trafaret {
+            background-image: url('../../../assets/img/master-class/trafaret.jpeg');
+          }
+          .master_class_hand_mixer {
+            background-image: url('../../../assets/img/master-class/hand-mixer.jpeg');
+          }
+          .master_class_make_photo {
+            background-image: url('../../../assets/img/master-class/camera.jpeg');
+          }
+          .master_class_bonus {
+            background-image: url('../../../assets/img/master-class/bonus.jpeg');
           }
         }
       }

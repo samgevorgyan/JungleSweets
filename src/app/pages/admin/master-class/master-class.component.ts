@@ -12,7 +12,7 @@ import { take } from 'rxjs/operators';
   templateUrl: './master-class.component.html',
   styleUrls: ['./master-class.component.scss'],
 })
-export class MasterClassComponent implements OnInit, AfterViewInit {
+export class MasterClassComponent implements OnInit {
   users: Array<User>;
   displayedColumns: string[] = [
     'id',
@@ -25,10 +25,14 @@ export class MasterClassComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  public discount: boolean;
+  discountEnds: number;
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.getUsers();
+    // this.getDiscounts();
+    this.getSorted();
   }
 
   getUsers() {
@@ -38,12 +42,9 @@ export class MasterClassComponent implements OnInit, AfterViewInit {
       .subscribe((users) => {
         this.users = users;
         this.dataSource = new MatTableDataSource(users);
-        console.log('this.userds', this.users);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
-  }
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -56,12 +57,33 @@ export class MasterClassComponent implements OnInit, AfterViewInit {
   }
 
   changePurchasedState(isChecked, user: User) {
-    console.log('e', isChecked);
-    console.log('user', user);
     const userInfo: User = {
       ...user,
       isPurchased: isChecked,
     };
     this.adminService.updateDataBaseDocument(userInfo, `users/${user.uid}`);
+  }
+
+  startDiscount(discountAmount: string) {
+    if (discountAmount === '') {
+      return;
+    }
+    const data = {
+      startTime: new Date().getTime(),
+      amount: discountAmount,
+    };
+    this.adminService.setToDataBase(data, 'discounts/');
+  }
+
+  getSorted() {
+    this.adminService
+      .getAndSort('discounts', 'startTime', 'desc', 1)
+      .valueChanges()
+      .subscribe((res: any) => {
+        const treeDay = 3 * 24 * 60 * 60 * 1000;
+        this.discountEnds = res[0].startTime + treeDay;
+        console.log('this.discountEnds', this.discountEnds);
+        this.discount = new Date().getTime() > this.discountEnds;
+      });
   }
 }

@@ -51,7 +51,7 @@
           fxLayout="row"
           fxLayoutAlign="start center"
           fxLayoutGap="20px"
-          *ngIf="!(isHandset$ | async)"
+          *ngIf="!(isHandset$ | async) && !isAdmin"
         >
           <span
             class="login_part"
@@ -82,7 +82,7 @@
           >
           <div
             class="language_part"
-            [matMenuTriggerFor]="LanguageMenu"
+            [matMenuTriggerFor]="masterClass ? LanguageMenuFake : LanguageMenu"
             (menuClosed)="isMenuOpened = false"
             (menuOpened)="isMenuOpened = true"
             fxLayout="row"
@@ -90,9 +90,16 @@
           >
             {{ 'HEADER.LANGUAGE_SHOW' | translate }}
 
-            <fa-icon icon="angle-down" *ngIf="!isMenuOpened"></fa-icon>
-            <fa-icon icon="angle-up" *ngIf="isMenuOpened"></fa-icon>
-
+            <fa-icon icon="angle-down" *ngIf="masterClass"></fa-icon>
+            <fa-icon
+              icon="angle-down"
+              *ngIf="!isMenuOpened && !masterClass"
+            ></fa-icon>
+            <fa-icon
+              icon="angle-up"
+              *ngIf="isMenuOpened && !masterClass"
+            ></fa-icon>
+            <mat-menu fxHide="true" #LanguageMenuFake="matMenu"></mat-menu>
             <mat-menu #LanguageMenu="matMenu">
               <div
                 class="language_list_div"
@@ -115,14 +122,16 @@
 
       <div *ngIf="isAdmin" class="admin_ul">
         <ul fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-          <li class="c_pointer" (click)="navigateByUrl('/admin/main')">Main</li>
-          <li class="c_pointer" (click)="navigateByUrl('/admin/about')">
+          <li class="c_pointer" (click)="navigateByUrl('/miqrob/main')">
+            Main
+          </li>
+          <li class="c_pointer" (click)="navigateByUrl('/miqrob/about')">
             About
           </li>
-          <li class="c_pointer" (click)="navigateByUrl('/admin/assortments')">
+          <li class="c_pointer" (click)="navigateByUrl('/miqrob/assortments')">
             Assortments
           </li>
-          <li class="c_pointer" (click)="navigateByUrl('/admin/master-class')">
+          <li class="c_pointer" (click)="navigateByUrl('/miqrob/master-class')">
             MasterClass
           </li>
         </ul>

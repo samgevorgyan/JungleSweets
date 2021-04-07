@@ -1,83 +1,182 @@
 <div class="master_class_main_container">
-  <div class="master_class_back"></div>
+  <div class="hello_user">
+    <span *ngIf="dbUser?.firstName || dbUser?.lastName; else withemail"
+      >{{ 'MASTER_CLASS.WELCOME_MESSAGE' | translate }} {{ dbUser?.firstName }}
+      {{ dbUser?.lastName }}
+    </span>
+    <ng-template #withemail>
+      <span
+        >{{ 'MASTER_CLASS.WELCOME_MESSAGE' | translate }} {{ dbUser?.email }}
+      </span>
+    </ng-template>
+    <br />
+    <span>{{ 'MASTER_CLASS.WELCOME_WISH' | translate }}</span>
+  </div>
   <div class="email_verify" *ngIf="!emailVerified">
     {{ 'MASTER_CLASS.EMAIL_VERIFIED' | translate }}
   </div>
-  <div class="is_not_purchased" *ngIf="!dbUser?.isPurchased && emailVerified">
-    <h2>{{ 'MASTER_CLASS.IS_PURCHASED' | translate }}</h2>
+  <div *ngIf="dbUser">
+    <div class="is_not_purchased" *ngIf="!dbUser?.isPurchased && emailVerified">
+      <h2>{{ 'MASTER_CLASS.IS_PURCHASED' | translate }}</h2>
 
-    <div
-      class="transfers_methods"
-      fxLayout="column"
-      fxLayoutAlign="center start"
-      fxLayoutGap="30px"
-    >
-      <span
-        >{{ 'MASTER_CLASS.TRANSFER_TO_CARD' | translate }}
-        <span class="numbers"> 42424242424242</span></span
-      >
-
-      <span
-        >{{ 'MASTER_CLASS.TRANSFER_TO_ACCOUNT' | translate }}
-        <span class="numbers"> 42424242424242</span></span
-      >
-      <span
-        >{{ 'MASTER_CLASS.TRANSFER_TO_IDRAM' | translate
-        }}<span class="numbers"> 42424242424242</span></span
-      >
-    </div>
-  </div>
-  <div
-    class="master_class_content"
-    *ngIf="dbUser?.isPurchased && emailVerified"
-  >
-    <div class="video_parent_div">
-      <video [src]="videoLink" controls>
-        Your browser does not support the video tag.
-      </video>
-    </div>
-
-    <div class="pdf_links_part">
-      <ul
+      <div
+        class="transfers_methods"
         fxLayout="column"
-        fxLayoutAlign="space-evenly center"
-        fxLayoutGap="60px"
+        fxLayoutAlign="center start"
+        fxLayoutGap="30px"
       >
-        <li>
-          <a
-            href="../../../assets/pdf/necessary-ingredient.pdf"
-            target="_blank"
-            >{{ 'MASTER_CLASS.INGREDIENT' | translate }}</a
+        <span
+          >{{ 'MASTER_CLASS.TRANSFER_TO_CARD' | translate }}
+          <span class="numbers"> 4847 0300 0063 8557</span></span
+        >
+
+        <span
+          >{{ 'MASTER_CLASS.TRANSFER_TO_ACCOUNT' | translate }}
+          <span class="numbers"> 1930 0570 9061 0500</span></span
+        >
+        <span
+          >{{ 'MASTER_CLASS.TRANSFER_TO_IDRAM' | translate
+          }}<span class="numbers"> 327606945</span></span
+        >
+      </div>
+    </div>
+    <div
+      class="master_class_content"
+      *ngIf="dbUser?.isPurchased && emailVerified"
+    >
+      <div class="video_parent_div">
+        <video
+          #video
+          controls
+          [controlsList]="'nodownload'"
+          (contextmenu)="preventContextMenu($event)"
+        >
+          <source [src]="videoLink" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="pdf_links_part">
+        <ul
+          fxLayout="column"
+          fxLayoutAlign="space-evenly center"
+          fxLayoutGap="60px"
+        >
+          <li
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutAlign="start center"
           >
-        </li>
-        <li>
-          <a href="../../../assets/pdf/fillings.pdf" target="_blank">{{
-            'MASTER_CLASS.FILINGS' | translate
-          }}</a>
-        </li>
-        <li>
-          <a href="../../../assets/pdf/trafaret.pdf" target="_blank">{{
-            'MASTER_CLASS.TRAFARET' | translate
-          }}</a>
-        </li>
-        <li>
-          <a
-            href="../../../assets/pdf/macaron-hand-mixer.pdf"
-            target="_blank"
-            >{{ 'MASTER_CLASS.MACARON_MIXER' | translate }}</a
+            <div
+              class="color_div"
+              fxLayout="column"
+              fxLayoutAlign="space-evenly center"
+            >
+              <span>{{ 'MASTER_CLASS.INGREDIENT' | translate }}</span>
+              <a
+                href="../../../assets/pdf/necessary-ingredient.pdf"
+                target="_blank"
+              >
+                {{ 'COMMON.OPEN' | translate }}</a
+              >
+            </div>
+            <div class="master_class_receipt picture_div"></div>
+          </li>
+
+          <li
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutAlign="start center"
           >
-        </li>
-        <li>
-          <a href="../../../assets/pdf/make-photo.pdf" target="_blank">{{
-            'MASTER_CLASS.MAKE_PHOTO' | translate
-          }}</a>
-        </li>
-        <li>
-          <a href="../../../assets/pdf/chiscake.pdf" target="_blank">{{
-            'MASTER_CLASS.BONUS_CHEESECAKE' | translate
-          }}</a>
-        </li>
-      </ul>
+            <div
+              class="color_div"
+              fxLayout="column"
+              fxLayoutAlign="space-evenly center"
+            >
+              <span>{{ 'MASTER_CLASS.FILINGS' | translate }}</span>
+              <a href="../../../assets/pdf/fillings.pdf" target="_blank">
+                {{ 'COMMON.OPEN' | translate }}</a
+              >
+            </div>
+            <div class="master_class_filings picture_div"></div>
+          </li>
+
+          <li
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutAlign="start center"
+          >
+            <div
+              class="color_div"
+              fxLayout="column"
+              fxLayoutAlign="space-evenly center"
+            >
+              <span>{{ 'MASTER_CLASS.TRAFARET' | translate }}</span>
+              <a href="../../../assets/pdf/trafaret.pdf" target="_blank">
+                {{ 'COMMON.OPEN' | translate }}</a
+              >
+            </div>
+            <div class="master_class_trafaret picture_div"></div>
+          </li>
+
+          <li
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutAlign="start center"
+          >
+            <div
+              class="color_div"
+              fxLayout="column"
+              fxLayoutAlign="space-evenly center"
+            >
+              <span>{{ 'MASTER_CLASS.MACARON_MIXER' | translate }}</span>
+              <a
+                href="../../../assets/pdf/macaron-hand-mixer.pdf"
+                target="_blank"
+              >
+                {{ 'COMMON.OPEN' | translate }}</a
+              >
+            </div>
+            <div class="master_class_hand_mixer picture_div"></div>
+          </li>
+
+          <li
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutAlign="start center"
+          >
+            <div
+              class="color_div"
+              fxLayout="column"
+              fxLayoutAlign="space-evenly center"
+            >
+              <span>{{ 'MASTER_CLASS.MAKE_PHOTO' | translate }}</span>
+              <a href="../../../assets/pdf/make-photo.pdf" target="_blank">
+                {{ 'COMMON.OPEN' | translate }}</a
+              >
+            </div>
+            <div class="master_class_make_photo picture_div"></div>
+          </li>
+          <li
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutAlign="start center"
+          >
+            <div
+              class="color_div"
+              fxLayout="column"
+              fxLayoutAlign="space-evenly center"
+            >
+              <span>{{ 'MASTER_CLASS.BONUS_CHEESECAKE' | translate }}</span>
+              <a href="../../../assets/pdf/chiscake.pdf" target="_blank">
+                {{ 'COMMON.OPEN' | translate }}</a
+              >
+            </div>
+            <div class="master_class_bonus picture_div"></div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
+  <div class="master_class_back"></div>
 </div>

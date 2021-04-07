@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
         .pipe(filter((event) => event instanceof NavigationEnd))
         .subscribe((event) => {
           if (event instanceof RouterEvent) {
-            this.isAdmin = event.url.includes('admin/');
+            this.isAdmin = event.url.includes('miqrob/');
           }
         });
       const languageOfBrowser = this.translate.getBrowserLang();
